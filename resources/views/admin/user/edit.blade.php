@@ -6,7 +6,7 @@
         @csrf
         @method('PUT')
         <div class="form-group">
-            <label for="name">Tên</label>
+            <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
             @error('name')
                     <small>{{ $message }}</small>
@@ -20,14 +20,14 @@
             @enderror
         </div>
         <div class="form-group">
-            <label for="password">Mật khẩu mới (tuỳ chọn)</label>
+            <label for="password">Your new password</label>
             <input type="password" class="form-control" id="password" name="password">
         </div>
         <div class="form-group">
-            <label for="password_confirmation">Xác nhận mật khẩu mới</label>
+            <label for="password_confirmation">confirm your new password</label>
             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
         </div>
-        <button type="submit" class="btn btn-success">Cập nhật</button>
+        <button type="submit" class="btn btn-success">Update</button>
     </form>
 </div>
 @endsection

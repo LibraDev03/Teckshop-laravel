@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Exists;
 
 class AuthController extends Controller
 {
@@ -32,7 +34,7 @@ class AuthController extends Controller
             return redirect()->route('admin.home');
         }else {
             // Đăng nhập thất bại
-            return redirect()->back()->with('no', 'Email hoặc mật khẩu không đúng');
+            return redirect()->back()->with('no', 'email or password is incorrect');
         }
 
 
@@ -62,5 +64,54 @@ class AuthController extends Controller
         return redirect()->route('authen.login');
     }
 
+    public function change_password() {           
+        return view('authen.change_pass') ;
+    }
+
+    public function check_change_password(Request $request) {      
+        $validated = $request->validate([
+            'oldpassword' => 'required',
+            'newpassword' => 'required',
+            'confirmnewpassword' => 'required|same:newpassword',
+        ]);
+//    dd($validated['oldpassword']);
+//    dd($user->password);
+        if (Hash::check($validated['oldpassword'], auth()->user()->password)) {
+            // Cập nhật mật khẩu mới
+            $user = User::query()->findOrFail(auth()->user()->id);
+            $user->password = Hash::make($validated['newpassword']);
+            $user->save();
     
+            // Chuyển hướng đến trang danh sách người dùng hoặc một trang khác
+            return redirect()->route('authen.login');
+        }else {
+            return back();
+        }
+        
+    }
+
+    public function forgot_password() {           
+        //
+    }
+
+    public function check_forgot_password() {      
+        //
+    }
+
+    public function profile() {           
+        //
+    }
+
+    public function check_profile() {      
+        //
+    }
+
+    public function reset_password() {           
+        //
+    }
+
+    public function check_reset_password() {      
+        //
+    }
+
 }

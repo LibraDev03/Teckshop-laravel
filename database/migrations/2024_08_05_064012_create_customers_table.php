@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id'); // Thêm cột user_id để làm khóa ngoại
+            $table->string('gender');
+            $table->string('phone', 11);
+            $table->string('address');
             $table->timestamps();
+
+            // Định nghĩa khóa ngoại
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

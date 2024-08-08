@@ -262,7 +262,7 @@
                                     <p>Guest</p>
                                     @endif
                                     </li>
-                                    <li><a href="{{route('authen.login')}}">Login</a></li>
+                                    <li><a href="{{route('authen.change_password')}}">Change the password</a></li>
                                     <li><a href="{{route('authen.register')}}">Register</a></li>
                                     <li><a href="{{ route('authen.logout') }}">Logout</a></li>
                                 </ul>

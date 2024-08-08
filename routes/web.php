@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Contracts\Session\Session;
 
@@ -34,17 +36,22 @@ Route::post('/authen/register' , [AuthController::class, 'check_register']);
 // route làm đăng xuất 
 Route::get('/authen/logout' , [AuthController::class , 'logout'])->name('authen.logout');
 
-// Nhóm route này để làm đăng kí đăng nhập và đăng xuất cho người dùng và admin
+// Nhóm route này để làm đăng kí đăng nhập và đăng xuất cho người dùng
 Route::group(['prefix' => 'authen' , 'middleware'=> 'auth'], function() {
     Route::get('/', [AuthController::class, 'authen']  )->name('authen.authen');
+
+    Route::get('/change_password' , [AuthController::class , 'change_password'] )->name('authen.change_password');
+    Route::post('/change_password' , [AuthController::class , 'check_change_password'] );
 });
 
 // Nhóm route này để có thể vào dashboard cho admin 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin',"middleware" => "checkAdmin"], function() {
     Route::get('/', [DashboardController::class , 'dashboard'])->name('admin.dashboard'); 
 
     Route::resources([
-        'user' => UserController::class
+        'user' => UserController::class,
+        'category' => CategoryController::class,
+        'product' => ProductController::class
     ]);
 });
 

@@ -1,7 +1,6 @@
 @extends('layouts.admin.index')
 @section('main')
 
-    
     <div class="container">
         <h1>Create a new user</h1>
         <form action="{{ route('user.store') }}" method="POST">
