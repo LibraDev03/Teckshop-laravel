@@ -30,8 +30,13 @@ class AuthController extends Controller
 
         $data = request()->all('email','password');         // Lấy tất cả dữ liệu từ yêu cầu HTTP, cả dữ liệu từ các input fields trong form, và lưu trữ chúng vào biến $data.
         if(auth()->attempt($data)) {                        // auth->attempt là kiểm tra thông tin có trên csdl trùng khớp là true còn lại false
-            //
-            return redirect()->route('admin.home');
+            
+            $role = auth()?->user()?->role;                 //ktra neu auth co du lieu tra ve db user , neu user co du lieu tra ve cot role trong bang user
+            if($role != 0) {
+                return redirect()->route('admin.home');
+            }else{
+                return redirect()->route('admin.dashboard');
+            }
         }else {
             // Đăng nhập thất bại
             return redirect()->back()->with('no', 'email or password is incorrect');
@@ -53,7 +58,7 @@ class AuthController extends Controller
             'confirm_password' => 'required|same:password', // same:password là xác thực lại giống mk
         ]);
 
-        $data = request()->all('email','name');             // Lấy tất cả dữ liệu từ yêu cầu HTTP, cả dữ liệu từ các input fields trong form, và lưu trữ chúng vào biến $data.
+        $data = request()->all('email','name','role');             // Lấy tất cả dữ liệu từ yêu cầu HTTP, cả dữ liệu từ các input fields trong form, và lưu trữ chúng vào biến $data.
         $data['password'] = bcrypt(request('password'));    // mã hóa mật khẩu và gán vào biến data
         User::create($data);                                // chèn các dữ liệu ở biến $data vào bảng User  
         return redirect()->route('authen.login');          // điều hướng đến trang client người dùng
@@ -74,8 +79,7 @@ class AuthController extends Controller
             'newpassword' => 'required',
             'confirmnewpassword' => 'required|same:newpassword',
         ]);
-//    dd($validated['oldpassword']);
-//    dd($user->password);
+
         if (Hash::check($validated['oldpassword'], auth()->user()->password)) {
             // Cập nhật mật khẩu mới
             $user = User::query()->findOrFail(auth()->user()->id);
@@ -106,12 +110,5 @@ class AuthController extends Controller
         //
     }
 
-    public function reset_password() {           
-        //
-    }
-
-    public function check_reset_password() {      
-        //
-    }
 
 }

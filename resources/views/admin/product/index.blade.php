@@ -25,7 +25,7 @@
             <td><img src="{{ asset('assets/img/product/' . $product->image) }}" alt="" width="50px"></td>
             <td>
             <a href="{{ route('product.edit', $product->id) }}" class="btn btn-dark">Edit</a>
-            <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;">
+            <form action="{{ route('product.destroy', $product->id) }}" method="POST" style="display:inline;" onsubmit=" return confirm('Are you sure')">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-dark">Delete</button>
@@ -33,7 +33,6 @@
             </td>
         </tr>   
         @endforeach
-        
     </tbody>
     </table>
 @endsection

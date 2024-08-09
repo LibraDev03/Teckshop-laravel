@@ -23,9 +23,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // $cats = Category::orderBy('name','ASC')->select('id','name')->get();
-        return view('admin.product.create');
-        
+        $cats = Category::orderBy('name','ASC')->select('id','name')->get();
+        return view('admin.product.create' , compact('cats'));    
     }
 
     /**
@@ -33,7 +32,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:products,name',
+            'price' => 'required',
+            'image' => 'required|mimes:jpg,jpeg,png,gif',
+            'description' => 'required',
+            'category_id' => 'required|exists:categories,id'
+        ]);
+        
+        $data = $request->only('name' , 'price' , 'description' , 'category_id');
+
+        // dd( $data);
+        // đặt 1 biến và dùng request truy vấn vào cột image , hashName để mã hóa tên ảnh tránh trùng lặp 
+        $img_name = $request->image->hashName();
+        // truy vấn vào cột image sau đó dùng move dời thư mục ảnh upload đến  file cần đến = hàm public_path
+        $request->image->move(public_path('assets/img/product'), $img_name);
+        $data['image'] = $img_name;
+
+        if(Product::create($data)) {
+            return redirect()->route('product.index');
+        }
+        return redirect()->back();
     }
 
     /**
@@ -49,7 +68,9 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $cats = Category::orderBy('name','ASC')->select('id','name')->get();
+        $products = Product::find($id);
+        return view('admin.product.edit' , compact('products','cats'));
     }
 
     /**
@@ -57,7 +78,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $products = Product::find($id);
+        $request->validate([
+            'name' => 'required|unique:products,name,' . $products->id,
+            'price' => 'required',
+            'image' => 'required|mimes:jpg,jpeg,png,gif',
+            'description' => 'required',
+            'category_id' => 'required|exists:categories,id'
+        ]);
+
+        // dd($data1);
+
+        $data = $request->only('name','price','description','category_id');
+
+        // biến has kiểm tra có ảnh hay không , nếu có thì thực hiện upload không thì giữ nguyên
+        if($request->has('image')){
+            $img_name = $request->image->hashName();
+            $request->image->move(public_path('assets/img/product'), $img_name);
+            $data['image'] = $img_name;
+        }
+
+       if($products->update($data)) {
+        return redirect()->route('product.index');
+        }
+
+        return redirect()->back();
+
     }
 
     /**
@@ -65,6 +111,10 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::find($id);
+        
+        if($product->delete()){
+            return redirect()->route('product.index');
+        }
     }
 }
