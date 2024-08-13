@@ -13,7 +13,17 @@
           <img src="{{asset('adminDB/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Hoang Son Nguyen</a>
+          <div class="row">
+            <div class="col">
+            <a href="#" class="d-block">
+                @if (Auth::check() && Auth::user()->name)
+                  {{ Auth::user()->name }}
+                @endif
+             </a>
+            <br>
+            <li><a  class="btn btn-secondary" href="{{ route('authen.logout') }}">Logout</a></li>
+            </div>
+          </div>
         </div>
       </div>
   
@@ -77,7 +87,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/mailbox/mailbox.html" class="nav-link">
+                <a href="{{ route('category.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Category Lists</p>
                 </a>

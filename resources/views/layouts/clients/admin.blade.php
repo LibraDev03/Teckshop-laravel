@@ -256,11 +256,12 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="top_right text-end">
                                 <ul>
-                                    <li>@if (Auth::check() && Auth::user()->name)
-                                        {{ Auth::user()->name }}
-                                    @else
-                                    <p>Guest</p>
-                                    @endif
+                                    <li>
+                                        @if (Auth::check() && Auth::user()->name)
+                                            {{ Auth::user()->name }}
+                                        @else
+                                            <p>Guest</p>
+                                        @endif
                                     </li>
                                     <li><a href="{{route('authen.change_password')}}">Change the password</a></li>
                                     <li><a href="{{route('authen.register')}}">Register</a></li>
