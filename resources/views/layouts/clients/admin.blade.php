@@ -516,13 +516,8 @@
                             <div class="main_menu menu_position">
                                 <nav>
                                     <ul>
-                                        <li><a class="active" href="">home</a>
-                                            <ul class="sub_menu">
-                                                <li><a href="">home 1</a></li>
-                                                <li><a href=""></a>home 2</li>
-                                            </ul>
-                                        </li>
-                                        <li class="mega_items"><a href="shop.html">shop<i
+                                        <li><a class="" href="{{ route('admin.home') }}">home</a></li>
+                                        <li class="mega_items"><a href="shop.html" class="">shop<i
                                                     class="fa fa-angle-down"></i></a>
                                             <div class="mega_menu">
                                                 <ul class="mega_menu_inner">
@@ -575,29 +570,17 @@
                                                 </ul>
                                             </div>
                                         </li>
-                                        <li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub_menu pages">
-                                                <li><a href="blog-details.html">blog details</a></li>
-                                                <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                                <li><a href="blog-sidebar.html">blog left sidebar</a></li>
-                                                <li><a href="blog-no-sidebar.html">blog no sidebar</a></li>
-                                            </ul>
+                                        <li><a href="{{ route('client.blog') }}">blog</a>
                                         </li>
+                                        <li><a href="{{ route('client.about') }}">about Us</a></li>
+                                        <li><a href="{{ route('client.contact') }}"> Contact Us</a></li>
                                         <li><a href="#">pages <i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="services.html">services</a></li>
-                                                <li><a href="privacy-policy.html">privacy policy</a></li>
-                                                <li><a href="faq.html">Frequently Questions</a></li>
-                                                <li><a href="contact.html">contact</a></li>
-                                                <li><a href="login.html">login</a></li>
-                                                <li><a href="404.html">Error 404</a></li>
-                                                <li><a href="compare.html">Compare</a></li>
+                                                <li><a href="https://www.facebook.com/profile.php?id=100010376408025">Facebook</a></li>
+                                                <li><a href="https://www.instagram.com/h_son_ng/">Instagram</a></li>
+                                                <li><a href="https://github.com/LibraDev03">Github</a></li>
                                             </ul>
                                         </li>
-
-                                        <li><a href="">about Us</a></li>
-                                        <li><a href=""> Contact Us</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -624,23 +607,18 @@
                         <div class="main_menu">
                             <nav>
                                 <ul>
-                                    <li><a class="active" href="index.html">home<i class="fa fa-angle-down"></i></a>
-                                        <ul class="sub_menu">
-                                            <li><a href="index.html">Home shop 1</a></li>
-                                            <li><a href="index-2.html">Home shop 2</a></li>
-                                            <li><a href="index-3.html">Home shop 3</a></li>
-                                            <li><a href="index-4.html">Home shop 4</a></li>
-                                            <li><a href="index-5.html">Home shop 5</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="mega_items"><a href="shop.html">shop<i class="fa fa-angle-down"></i></a>
+                                    <li><a class="" href="{{ route('admin.home') }}">home</a></li>
+                                    <li class="mega_items"><a href="shop.html" class="">shop<i
+                                                class="fa fa-angle-down"></i></a>
                                         <div class="mega_menu">
                                             <ul class="mega_menu_inner">
                                                 <li><a href="#">Shop Layouts</a>
                                                     <ul>
                                                         <li><a href="shop-fullwidth.html">Full Width</a></li>
-                                                        <li><a href="shop-fullwidth-list.html">Full Width list</a></li>
-                                                        <li><a href="shop-right-sidebar.html">Right Sidebar </a></li>
+                                                        <li><a href="shop-fullwidth-list.html">Full Width list</a>
+                                                        </li>
+                                                        <li><a href="shop-right-sidebar.html">Right Sidebar </a>
+                                                        </li>
                                                         <li><a href="shop-right-sidebar-list.html"> Right Sidebar
                                                                 list</a></li>
                                                         <li><a href="shop-list.html">List View</a></li>
@@ -660,8 +638,10 @@
                                                         <li><a href="product-details.html">product details</a></li>
                                                         <li><a href="product-sidebar.html">product sidebar</a></li>
                                                         <li><a href="product-grouped.html">product grouped</a></li>
-                                                        <li><a href="variable-product.html">product variable</a></li>
-                                                        <li><a href="product-countdown.html">product countdown</a></li>
+                                                        <li><a href="variable-product.html">product variable</a>
+                                                        </li>
+                                                        <li><a href="product-countdown.html">product countdown</a>
+                                                        </li>
 
                                                     </ul>
                                                 </li>
@@ -669,39 +649,29 @@
                                                     <ul>
                                                         <li><a href="shop.html">Cables & Connectors</a></li>
                                                         <li><a href="shop-list.html">Graphics Tablets</a></li>
-                                                        <li><a href="shop-fullwidth.html">Printers, Ink & Toner</a></li>
-                                                        <li><a href="shop-fullwidth-list.html">Refurbished Tablets</a>
+                                                        <li><a href="shop-fullwidth.html">Printers, Ink & Toner</a>
                                                         </li>
-                                                        <li><a href="shop-right-sidebar.html">Optical Drives</a></li>
+                                                        <li><a href="shop-fullwidth-list.html">Refurbished
+                                                                Tablets</a></li>
+                                                        <li><a href="shop-right-sidebar.html">Optical Drives</a>
+                                                        </li>
 
                                                     </ul>
                                                 </li>
                                             </ul>
                                         </div>
                                     </li>
-                                    <li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
-                                        <ul class="sub_menu pages">
-                                            <li><a href="blog-details.html">blog details</a></li>
-                                            <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                            <li><a href="blog-sidebar.html">blog left sidebar</a></li>
-                                            <li><a href="blog-no-sidebar.html">blog no sidebar</a></li>
-                                        </ul>
+                                    <li><a href="{{ route('client.blog') }}">blog</a>
                                     </li>
+                                    <li><a href="{{ route('client.about') }}">about Us</a></li>
+                                    <li><a href="{{ route('client.contact') }}"> Contact Us</a></li>
                                     <li><a href="#">pages <i class="fa fa-angle-down"></i></a>
                                         <ul class="sub_menu pages">
-                                            <li><a href="about.html">About Us</a></li>
-                                            <li><a href="services.html">services</a></li>
-                                            <li><a href="privacy-policy.html">privacy policy</a></li>
-                                            <li><a href="faq.html">Frequently Questions</a></li>
-                                            <li><a href="contact.html">contact</a></li>
-                                            <li><a href="login.html">login</a></li>
-                                            <li><a href="404.html">Error 404</a></li>
-                                            <li><a href="compare.html">Compare</a></li>
+                                            <li><a href="https://www.facebook.com/profile.php?id=100010376408025">Facebook</a></li>
+                                            <li><a href="https://www.instagram.com/h_son_ng/">Instagram</a></li>
+                                            <li><a href="https://github.com/LibraDev03">Github</a></li>
                                         </ul>
                                     </li>
-
-                                    <li><a href="about.html">about Us</a></li>
-                                    <li><a href="contact.html"> Contact Us</a></li>
                                 </ul>
                             </nav>
                         </div>
@@ -787,10 +757,9 @@
                             <div class="footer_contact">
                                 <p>We are a team of designers and developers that
                                     create high quality HTML Template, Woocommerce, Shopify Theme.</p>
-                                <p><span>Address</span> Your address goes here.</p>
-                                <p><span>Mobile: </span><a href="tel:0123456789">0123456789</a> – <a
-                                        href="tel:0123456789">0123456789</a> </p>
-                                <p><span>Support: </span><a href="mailto:demo@example.com">demo@example.com</a>
+                                <p><span>Address</span> Chuyen My, Phu Xuyen, Ha Noi, Viet Nam</p>
+                                <p><span>Mobile: </span><a href="tel:0123456789">0912313402</a>
+                                <p><span>Support: </span><a href="mailto:demo@example.com">sonn20102003@gmail.com</a>
                                 </p>
                             </div>
                         </div>
@@ -988,12 +957,12 @@
                                     <div class="modal_social">
                                         <h2>Share this product</h2>
                                         <ul>
-                                            <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                            <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li class="pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                            <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a>
+                                            <li class="facebook"><a href="https://www.facebook.com/profile.php?id=100010376408025"><i class="fa fa-facebook"></i></a></li>
+                                            <li class="twitter"><a href="https://www.facebook.com/profile.php?id=100010376408025"><i class="fa fa-twitter"></i></a></li>
+                                            <li class="pinterest"><a href="https://www.instagram.com/h_son_ng/"><i class="fa fa-pinterest"></i></a></li>
+                                            <li class="google-plus"><a href="https://www.instagram.com/h_son_ng/"><i class="fa fa-google-plus"></i></a>
                                             </li>
-                                            <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                            <li class="linkedin"><a href="https://www.instagram.com/h_son_ng/"><i class="fa fa-linkedin"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>

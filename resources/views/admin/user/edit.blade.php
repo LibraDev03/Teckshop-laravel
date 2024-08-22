@@ -27,7 +27,7 @@
             <label for="password_confirmation">confirm your new password</label>
             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
         </div>
-        <button type="submit" class="btn btn-success">Update</button>
+        <button type="submit" class="btn btn-dark">Update</button>
     </form>
 </div>
 @endsection

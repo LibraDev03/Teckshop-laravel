@@ -58,4 +58,8 @@ Route::group(['prefix' => 'admin',"middleware" => "checkAdmin"], function() {
 // Nhóm route này để vào client cho người dùng
 Route::group(['prefix' =>'client'], function() {
     Route::get('/', [HomeController::class , 'home'])->name('admin.home');
+
+    Route::get('/blog' , function(){ return view('client.blog'); })->name('client.blog');
+    Route::get('/about' , function(){ return view('client.about'); })->name('client.about');
+    Route::get('/contact' , function(){ return view('client.contact');})->name('client.contact');
 });

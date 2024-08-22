@@ -22,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -30,7 +30,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required'
+        ]);
+
+        Category::create($validated);
+        return redirect()->route('category.index');
     }
 
     /**
@@ -46,7 +51,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
@@ -54,7 +60,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::find($id);
+        $validated = $request->validate([
+            'name' => 'required|unique:categories,name,' . $category->id,
+        ]);
+
+        $category->update($validated);
+        return redirect()->route('category.index');
     }
 
     /**
