@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="contact_message form">
-                            <h3>Tell us your project</h3>
+                            <h3>Tell us about your problem</h3>
                             <form id="contact-form" method="POST" action="https://htmldemo.net/junko/junko/assets/mail.php">
                                 <p>
                                     <label> Your Name (required)</label>

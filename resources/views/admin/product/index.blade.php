@@ -9,7 +9,7 @@
         <th scope="col">Name</th>
         <th scope="col">category_id</th>
         <th scope="col">price</th>
-        <th scope="col">description</th>
+        <th scope="col" class="description-column">description</th>
         <th scope="col">image</th>
         <th scope="col">Action</th>
         </tr>
@@ -21,7 +21,7 @@
             <td>{{ $product->name }}</td>
             <td>{{ $product->cat->name }}</td>
             <td>{{ $product->price }}</td>
-            <td>{{ $product->description }}</td>
+            <td class="description-column">{{ $product->description }}</td>
             <td><img src="{{ asset('assets/img/product/' . $product->image) }}" alt="" width="50px"></td>
             <td>
             <a href="{{ route('product.edit', $product->id) }}" class="btn btn-dark">Edit</a>
@@ -35,4 +35,13 @@
         @endforeach
     </tbody>
     </table>
+
+    <style>
+        .description-column {
+            width: 500px;
+            height: 100px;
+            overflow: hidden; /* Ẩn phần nội dung tràn */
+            text-overflow: ellipsis; /* Hiển thị dấu ba chấm nếu nội dung quá dài */
+        }
+    </style>
 @endsection

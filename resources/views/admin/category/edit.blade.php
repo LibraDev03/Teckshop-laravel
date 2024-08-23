@@ -12,7 +12,7 @@
                     <small>{{ $message }}</small>
             @enderror
         </div>
-        <button type="submit" class="btn btn-dark">Update</button>
+        <button type="submit" class="btn btn-dark">Edit</button>
     </form>
 </div>
 @endsection

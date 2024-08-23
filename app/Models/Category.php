@@ -12,4 +12,9 @@ class Category extends Model
     protected $fillable =[
         'name'
     ];
+
+    // 1 danh mục thì có nhiều sản phẩm 
+    public function products() {
+        return $this->hasMany(Product::class, 'category_id','id')->orderBy('created_at','DESC');
+    }
 }

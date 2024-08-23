@@ -3078,6 +3078,13 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   font-size: 14px;
   margin-right: 5px;
 }
+.price_box span.name_product {
+  /* text-decoration: line-through; */
+  font-weight: 400;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
 .price_box span.current_price {
   color: #0063d1;
   font-weight: 500;

@@ -113,6 +113,14 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         
+        // xóa ảnh đã ma hóa khi xóa sản phẩm
+        if($product && $product->image){
+            $image_path = public_path('assets/img/product/' . $product->image);
+            if(file_exists($image_path)) {
+                unlink($image_path);
+            }
+        }
+
         if($product->delete()){
             return redirect()->route('product.index');
         }

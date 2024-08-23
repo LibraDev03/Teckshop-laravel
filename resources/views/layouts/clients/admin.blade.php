@@ -32,7 +32,8 @@
     <div class="off_canvars_overlay">
 
     </div>
-    <div class="Offcanvas_menu">
+
+    {{-- <div class="Offcanvas_menu">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -239,7 +240,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!--Offcanvas menu area end-->
 
     <header>
@@ -273,6 +274,7 @@
                 </div>
             </div>
             <!--header top start-->
+
             <!--header middel start-->
             <div class="header_middle">
                 <div class="container">
@@ -378,6 +380,7 @@
                 </div>
             </div>
             <!--header middel end-->
+
             <!--header bottom satrt-->
             <div class="main_menu_area">
                 <div class="container">
@@ -517,58 +520,12 @@
                                 <nav>
                                     <ul>
                                         <li><a class="" href="{{ route('admin.home') }}">home</a></li>
-                                        <li class="mega_items"><a href="shop.html" class="">shop<i
-                                                    class="fa fa-angle-down"></i></a>
-                                            <div class="mega_menu">
-                                                <ul class="mega_menu_inner">
-                                                    <li><a href="#">Shop Layouts</a>
-                                                        <ul>
-                                                            <li><a href="shop-fullwidth.html">Full Width</a></li>
-                                                            <li><a href="shop-fullwidth-list.html">Full Width list</a>
-                                                            </li>
-                                                            <li><a href="shop-right-sidebar.html">Right Sidebar </a>
-                                                            </li>
-                                                            <li><a href="shop-right-sidebar-list.html"> Right Sidebar
-                                                                    list</a></li>
-                                                            <li><a href="shop-list.html">List View</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">other Pages</a>
-                                                        <ul>
-                                                            <li><a href="cart.html">cart</a></li>
-                                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                            <li><a href="my-account.html">my account</a></li>
-                                                            <li><a href="404.html">Error 404</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Product Types</a>
-                                                        <ul>
-                                                            <li><a href="product-details.html">product details</a></li>
-                                                            <li><a href="product-sidebar.html">product sidebar</a></li>
-                                                            <li><a href="product-grouped.html">product grouped</a></li>
-                                                            <li><a href="variable-product.html">product variable</a>
-                                                            </li>
-                                                            <li><a href="product-countdown.html">product countdown</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Concrete Tools</a>
-                                                        <ul>
-                                                            <li><a href="shop.html">Cables & Connectors</a></li>
-                                                            <li><a href="shop-list.html">Graphics Tablets</a></li>
-                                                            <li><a href="shop-fullwidth.html">Printers, Ink & Toner</a>
-                                                            </li>
-                                                            <li><a href="shop-fullwidth-list.html">Refurbished
-                                                                    Tablets</a></li>
-                                                            <li><a href="shop-right-sidebar.html">Optical Drives</a>
-                                                            </li>
-
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                        <li ><a href="" class="">shop<i class="fa fa-angle-down"></i></a>
+                                            <ul class="sub_menu pages">
+                                                @foreach ($cats_home as $cath)
+                                                    <li><a href="{{ route('client.category', $cath->id) }}">{{ $cath->name }}</a></li>
+                                                @endforeach
+                                            </ul>
                                         </li>
                                         <li><a href="{{ route('client.blog') }}">blog</a>
                                         </li>
@@ -589,7 +546,9 @@
                 </div>
             </div>
             <!--header bottom end-->
+
         </div>
+
     </header>
     <!--header area end-->
 
@@ -607,72 +566,26 @@
                         <div class="main_menu">
                             <nav>
                                 <ul>
-                                    <li><a class="" href="{{ route('admin.home') }}">home</a></li>
-                                    <li class="mega_items"><a href="shop.html" class="">shop<i
-                                                class="fa fa-angle-down"></i></a>
-                                        <div class="mega_menu">
-                                            <ul class="mega_menu_inner">
-                                                <li><a href="#">Shop Layouts</a>
-                                                    <ul>
-                                                        <li><a href="shop-fullwidth.html">Full Width</a></li>
-                                                        <li><a href="shop-fullwidth-list.html">Full Width list</a>
-                                                        </li>
-                                                        <li><a href="shop-right-sidebar.html">Right Sidebar </a>
-                                                        </li>
-                                                        <li><a href="shop-right-sidebar-list.html"> Right Sidebar
-                                                                list</a></li>
-                                                        <li><a href="shop-list.html">List View</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">other Pages</a>
-                                                    <ul>
-                                                        <li><a href="cart.html">cart</a></li>
-                                                        <li><a href="wishlist.html">Wishlist</a></li>
-                                                        <li><a href="checkout.html">Checkout</a></li>
-                                                        <li><a href="my-account.html">my account</a></li>
-                                                        <li><a href="404.html">Error 404</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Product Types</a>
-                                                    <ul>
-                                                        <li><a href="product-details.html">product details</a></li>
-                                                        <li><a href="product-sidebar.html">product sidebar</a></li>
-                                                        <li><a href="product-grouped.html">product grouped</a></li>
-                                                        <li><a href="variable-product.html">product variable</a>
-                                                        </li>
-                                                        <li><a href="product-countdown.html">product countdown</a>
-                                                        </li>
-
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Concrete Tools</a>
-                                                    <ul>
-                                                        <li><a href="shop.html">Cables & Connectors</a></li>
-                                                        <li><a href="shop-list.html">Graphics Tablets</a></li>
-                                                        <li><a href="shop-fullwidth.html">Printers, Ink & Toner</a>
-                                                        </li>
-                                                        <li><a href="shop-fullwidth-list.html">Refurbished
-                                                                Tablets</a></li>
-                                                        <li><a href="shop-right-sidebar.html">Optical Drives</a>
-                                                        </li>
-
-                                                    </ul>
-                                                </li>
+                                        <li><a class="" href="{{ route('admin.home') }}">home</a></li>
+                                        <li ><a href="" class="">shop<i class="fa fa-angle-down"></i></a>
+                                            <ul class="sub_menu pages">
+                                                @foreach ($cats_home as $cath)
+                                                    <li><a href="{{ route('client.category', $cath->id) }}">{{ $cath->name }}</a></li>
+                                                @endforeach
                                             </ul>
-                                        </div>
-                                    </li>
-                                    <li><a href="{{ route('client.blog') }}">blog</a>
-                                    </li>
-                                    <li><a href="{{ route('client.about') }}">about Us</a></li>
-                                    <li><a href="{{ route('client.contact') }}"> Contact Us</a></li>
-                                    <li><a href="#">pages <i class="fa fa-angle-down"></i></a>
-                                        <ul class="sub_menu pages">
-                                            <li><a href="https://www.facebook.com/profile.php?id=100010376408025">Facebook</a></li>
-                                            <li><a href="https://www.instagram.com/h_son_ng/">Instagram</a></li>
-                                            <li><a href="https://github.com/LibraDev03">Github</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                        </li>
+                                        <li><a href="{{ route('client.blog') }}">blog</a>
+                                        </li>
+                                        <li><a href="{{ route('client.about') }}">about Us</a></li>
+                                        <li><a href="{{ route('client.contact') }}"> Contact Us</a></li>
+                                        <li><a href="#">pages <i class="fa fa-angle-down"></i></a>
+                                            <ul class="sub_menu pages">
+                                                <li><a href="https://www.facebook.com/profile.php?id=100010376408025">Facebook</a></li>
+                                                <li><a href="https://www.instagram.com/h_son_ng/">Instagram</a></li>
+                                                <li><a href="https://github.com/LibraDev03">Github</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                             </nav>
                         </div>
                         <div class="middel_right_info">

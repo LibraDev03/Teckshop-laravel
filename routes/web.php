@@ -62,4 +62,6 @@ Route::group(['prefix' =>'client'], function() {
     Route::get('/blog' , function(){ return view('client.blog'); })->name('client.blog');
     Route::get('/about' , function(){ return view('client.about'); })->name('client.about');
     Route::get('/contact' , function(){ return view('client.contact');})->name('client.contact');
+
+    Route::get('/category/{cat}', [HomeController::class, 'category'])->name('client.category');
 });

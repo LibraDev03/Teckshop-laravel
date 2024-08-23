@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 
-            <button type="submit" class="btn btn-dark">Create</button>  
+            <button type="submit" class="btn btn-dark">Edit</button>  
         </form>
     </div>
 @endsection

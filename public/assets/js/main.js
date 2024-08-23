@@ -35,18 +35,21 @@
     });
     
     /*---slider activation---*/
-    var $slider = $('.slider_area');
-    if($slider.length > 0){
-        $slider.owlCarousel({
-            animateOut: 'fadeOut',
-            loop: true,
-            nav: false,
-            autoplay: false,
-            autoplayTimeout: 8000,
-            items: 1,
-            dots:true,
-        });
-    }
+    $(document).ready(function(){
+        var $slider = $('.owl-carousel'); // Đảm bảo rằng selector chính xác
+
+        if($slider.length > 0){
+            $slider.owlCarousel({
+                animateOut: 'fadeOut',
+                loop: true,
+                nav: false,
+                autoplay: true, // Nếu bạn muốn autoplay, hãy đặt thành true
+                autoplayTimeout: 4000,
+                items: 1,
+                dots: true,
+            });
+        }
+    });
 
 
 
