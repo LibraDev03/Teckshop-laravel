@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        view()->composer('layouts.clients.admin', function($view){
+        view()->composer('*', function($view){
             $cats_home = Category::orderBy('name','DESC')->get();
             $view->with(compact('cats_home'));
         });

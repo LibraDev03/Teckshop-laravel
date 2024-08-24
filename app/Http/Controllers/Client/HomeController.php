@@ -19,6 +19,8 @@ class HomeController extends Controller
     public function category(Category $cat) {
         // 2 kiểu truy vấn 1 là bắt đầu từ $product 2 là bắt đầu từ model category
         // $products = Product::where('category_id', $cat->id)->get();
-        return view('client.category' , compact('cat'));
+        $products = $cat->products()->inRandomOrder()->paginate(9);
+        $news_products = Product::orderBy('created_at', 'DESC')->limit(3)->get()->shuffle();
+        return view('client.category' , compact('cat', 'products', 'news_products'));
     }
 }
