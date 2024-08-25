@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // truyền dữ liệu category ra ngoài trang client
         view()->composer('*', function($view){
             $cats_home = Category::orderBy('name','DESC')->get();
             $view->with(compact('cats_home'));

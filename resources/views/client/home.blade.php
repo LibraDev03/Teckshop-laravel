@@ -149,7 +149,7 @@
                         <article class="single_product">
                             <figure>
                                 <div class="product_thumb">
-                                    <a class="primary_img" href="product-countdown.html">
+                                    <a class="primary_img" href="product-countdown.htmll">
                                         <img src="assets/img/product/{{ $fp->image }}" alt="">
                                     </a>
                                     {{-- <a class="secondary_img" href="product-countdown.html">
