@@ -747,7 +747,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6">
                         <div class="copyright_area">
-                            <p class="copyright-text">&copy; 2022 <a href="index.html">Junko</a>. Made with <i
+                            <p class="copyright-text">&copy; 2022 <a href="index.htmlkl">Junko</a>. Made with <i
                                     class="fa fa-heart text-danger"></i> by <a href="https://hasthemes.com/"
                                     target="_blank">HasThemes</a> </p>
                         </div>

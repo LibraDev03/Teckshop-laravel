@@ -6689,6 +6689,9 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     margin-bottom: 58px;
   }
 }
+.product-details-tab {
+  text-align: center;
+}
 .product-details-tab:hover .s-tab-zoom.owl-carousel .owl-nav div {
   opacity: 1;
   visibility: visible;

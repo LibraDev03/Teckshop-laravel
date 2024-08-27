@@ -20,7 +20,7 @@
             <th scope="row">{{ $product->id }}</th>
             <td>{{ $product->name }}</td>
             <td>{{ $product->cat->name }}</td>
-            <td>{{ $product->price }}</td>
+            <td>${{ $product->price }}</td>
             <td class="description-column">{{ $product->description }}</td>
             <td><img src="{{ asset('assets/img/product/' . $product->image) }}" alt="" width="50px"></td>
             <td>

@@ -44,7 +44,7 @@
                 loop: true,
                 nav: false,
                 autoplay: true, // Nếu bạn muốn autoplay, hãy đặt thành true
-                autoplayTimeout: 4000,
+                autoplayTimeout: 2000,
                 items: 1,
                 dots: true,
             });

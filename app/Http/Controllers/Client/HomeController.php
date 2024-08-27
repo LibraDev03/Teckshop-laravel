@@ -27,7 +27,7 @@ class HomeController extends Controller
 
     public function product(product $product) {
         // truy vấn các sản phẩm liên quan đến sản phẩm hiện tại muốn xem chi tiết
-        $products = Product::where('category_id', $product->category_id )->limit(7)->get();
+        $products = Product::where('category_id', $product->category_id )->limit(6)->get();
         return view('client.product', compact('product','products'));
     }
 }

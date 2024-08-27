@@ -47,6 +47,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="single_slider d-flex align-items-center" data-bgimg="assets/img/slider/slider4.jpg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="slider_content">
+                                    <h1>best skin</h1>
+                                    <h2>qled 75 inch q7f</h2>
+                                    <p>exclusive offer <span> 20% off </span> this week</p>
+                                    <a class="button" href="">shopping now</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
         <!--slider area end-->
@@ -326,7 +340,7 @@
                         <article class="single_product">
                             <figure>
                                 <div class="product_thumb">
-                                    <a class="primary_img" href="{{ route('client.product' , $fp->id) }}">
+                                    <a class="primary_img" href="{{ route('client.product' , $np->id) }}">
                                         <img src="assets/img/product/{{$np->image}}" alt="">
                                     </a>
                                     {{-- hover vào để lấy ra hình ảnh thứ 2 của 1 sản phẩm --}}
