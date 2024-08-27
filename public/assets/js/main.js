@@ -628,8 +628,9 @@
         gallery:'gallery_01', 
         responsive : true,
         cursor: 'crosshair',
-        zoomType : 'inner'
-    
+        zoomType : 'lens',
+        lensSize: 1,  
+        borderSize: 1, 
     });  
     
     /*---portfolio Isotope activation---*/

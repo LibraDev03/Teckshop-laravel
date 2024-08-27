@@ -149,7 +149,7 @@
                         <article class="single_product">
                             <figure>
                                 <div class="product_thumb">
-                                    <a class="primary_img" href="product-countdown.htmll">
+                                    <a class="primary_img" href="{{ route('client.product' , $fp->id) }}">
                                         <img src="assets/img/product/{{ $fp->image }}" alt="">
                                     </a>
                                     {{-- <a class="secondary_img" href="product-countdown.html">
@@ -181,11 +181,11 @@
                                 </div>
                                 <figcaption class="product_content">
                                     <div class="price_box">
-                                        <span class="current_price">${{ $fp->price }}</span>
+                                        <span class="name_product"><b>{{ $fp->cat->name}}</b></span>
                                         <br>
-                                        <span class="name_product">{{ $fp->name}}</span>
+                                        <span class="current_price">${{ $fp->price }}</span>
                                     </div>
-                                    <h3 class="product_name"><a href="product-countdown.html">Test product for hoangsonnguyen's website</a></h3>
+                                    <h3 class="product_name"><a href="product-countdown.html">{{ $fp->name }}</a></h3>
                                 </figcaption>
                             </figure>
                         </article>
@@ -326,7 +326,7 @@
                         <article class="single_product">
                             <figure>
                                 <div class="product_thumb">
-                                    <a class="primary_img" href="product-details.html">
+                                    <a class="primary_img" href="{{ route('client.product' , $fp->id) }}">
                                         <img src="assets/img/product/{{$np->image}}" alt="">
                                     </a>
                                     {{-- hover vào để lấy ra hình ảnh thứ 2 của 1 sản phẩm --}}
@@ -353,11 +353,11 @@
                                 </div>
                                 <figcaption class="product_content">
                                     <div class="price_box">
-                                        <span class="current_price">${{ $np->price}}</span>
+                                        <span class="name_product"><b>{{ $np->cat->name }}</b></span>
                                         <br>
-                                        <span class="name_product">{{ $np->name }}</span>
+                                        <span class="current_price">${{ $np->price}}</span>
                                     </div>
-                                    <h3 class="product_name"><a href="product-details.html">{{ $np->description }}</a></h3>
+                                    <h3 class="product_name"><a href="product-details.html">{{ $np->name }}</a></h3>
                                 </figcaption>
                             </figure>
                         </article>
@@ -383,7 +383,7 @@
                             <article class="single_product">
                                 <figure>
                                     <div class="product_thumb">
-                                        <a class="primary_img" href="product-details.html">
+                                        <a class="primary_img" href="{{ route('client.product' , $fp->id) }}">
                                             <img src="assets/img/product/{{ $fp->image }}" alt="">
                                         </a>
                                         {{-- <a class="secondary_img" href="product-details.html">

@@ -21,6 +21,13 @@ class HomeController extends Controller
         // $products = Product::where('category_id', $cat->id)->get();
         $products = $cat->products()->inRandomOrder()->paginate(9);
         $news_products = Product::orderBy('created_at', 'DESC')->limit(3)->get()->shuffle();
-        return view('client.category' , compact('cat', 'products', 'news_products'));
+        $feature_product = Product::inRandomOrder()->limit(6)->get();
+        return view('client.category' , compact('cat', 'products', 'news_products', 'feature_product'));
+    }
+
+    public function product(product $product) {
+        // truy vấn các sản phẩm liên quan đến sản phẩm hiện tại muốn xem chi tiết
+        $products = Product::where('category_id', $product->category_id )->limit(7)->get();
+        return view('client.product', compact('product','products'));
     }
 }

@@ -8,7 +8,7 @@
                         <div class="breadcrumb_content">
                             <ul>
                                 <li><a href="{{ route('admin.home') }}">home</a></li>
-                                <li>{{ $cat->name }}</li>
+                                <li>Shop / {{ $cat->name }}</li>
                             </ul>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                                 <article class="single_product">
                                     <figure>
                                         <div class="product_thumb">
-                                            <a class="primary_img" href="product-details.html">
+                                            <a class="primary_img" href="{{ route('client.product' , $prod->id) }}">
                                                 <img src="{{ asset('assets/img/product/' . $prod->image) }}" alt="">
                                             </a>
                                             {{-- <a class="secondary_img" href="product-details.html">
@@ -94,21 +94,22 @@
                                         </div>
                                         <div class="product_content grid_content">
                                             <div class="price_box">
-                                                <span class="name">{{ $prod->name }}</span>
+                                                <span class="name"><b>{{ $prod->cat->name }}</b></span>
                                                 <br>
                                                 <span class="current_price">${{ $prod->price }}</span>
                                             </div>
                                             <div class="product_ratings">
-                                                <ul>
+                                                {{-- phần đánh giá chất lượng sản pahamr theo sao --}}
+                                                {{-- <ul>
                                                     <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                                     <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                                     <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                                     <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
                                                     <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
-                                                </ul>
+                                                </ul> --}}
                                             </div>
                                             <h3 class="product_name grid_name">
-                                                <a href="product-details.html">Natus erro at congue massa commodo sit</a>
+                                                <a href="product-details.html">{{ $prod->name }}</a>
                                             </h3>
                                         </div>
                                         {{-- <div class="product_content list_content">
@@ -212,7 +213,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="product_content">
-                                                    <h3><a href="product-details.html">Natus erro at congue</a></h3>
+                                                    <h3><a href="product-details.html">Latest products</a></h3>
                                                     <div class="product_ratings">
                                                         <ul>
                                                             <li><a href="#"><i class="ion-android-star-outline"></i></a>
