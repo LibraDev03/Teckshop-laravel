@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -28,6 +31,18 @@ class HomeController extends Controller
     public function product(product $product) {
         // truy vấn các sản phẩm liên quan đến sản phẩm hiện tại muốn xem chi tiết
         $products = Product::where('category_id', $product->category_id )->limit(6)->get();
-        return view('client.product', compact('product','products'));
+        $comments = Comment::where('product_id', $product->id)->orderBy('id','DESC')->get();
+        return view('client.product', compact('product','products','comments'));
+    }
+
+    public function comment(Product $product) {
+        $data = request()->all();
+        $data['product_id'] = $product->id;
+        $data['user_id'] = auth()->id();
+
+        // dd($data);
+        if(Comment::create($data)){
+            return redirect()->back();
+        }
     }
 }

@@ -68,4 +68,7 @@ Route::group(['prefix' =>'client'], function() {
     // chi tiết sản phầm ra ngoài client theo id của nó
     Route::get('/product/{product}', [HomeController::class, 'product'])->name('client.product');
 
+    // làm comment cho sản phẩm
+    Route::post('/comment/{product}', [HomeController::class, 'comment'])->name('client.comment');
+
 });

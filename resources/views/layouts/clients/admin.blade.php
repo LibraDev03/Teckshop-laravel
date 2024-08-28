@@ -251,7 +251,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-6 col-md-6">
                             <div class="support_info">
-                                <p>Telephone Enquiry: <a href="tel:0123456789">0912313402</a></p>
+                                <p>Telephone Enquiry: <a href="tel:0123456789">{{Route('admin.home')}}</a></p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6">
@@ -281,7 +281,7 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-6">
                             <div class="logo">
-                                <a href=""><img src="assets/img/logo/logo.png" alt=""></a>
+                                <a href="{{ route('admin.dashboard') }}"><img src="assets/img/logo/logo.png" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-9 col-md-6">
@@ -558,7 +558,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-3">
                     <div class="logo">
-                        <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                        <a href="{{route('admin.dashboard')}}"><img src="assets/img/logo/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-9">

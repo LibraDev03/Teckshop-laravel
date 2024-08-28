@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -23,6 +27,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // đingj nghĩa mycomment sẽ chỉ nhận được khi id người dùng đúng vs id người dùng comment
+        Gate::define('my-comment', function(User $user, Comment $com){
+            return $user->id == $com->user_id;
+        });
     }
 }

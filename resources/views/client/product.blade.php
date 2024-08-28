@@ -208,56 +208,41 @@
                             <div class="tab-pane fade" id="reviews" role="tabpanel">
                                 <div class="reviews_wrapper">
                                     <h2>1 review for Donec eu furniture</h2>
+                                    @foreach ($comments as $com)
                                     <div class="reviews_comment_box">
                                         <div class="comment_thmb">
                                             <img src="{{asset('assets/img/blog/comment2.jpg')}}" alt="">
                                         </div>
                                         <div class="comment_text">
                                             <div class="reviews_meta">
+                                                @can('my-comment', $com)
                                                 <div class="star_rating">
                                                     <ul>
-                                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
-                                                        <li><a href="#"><i class="ion-ios-star"></i></a></li>
+                                                        <li class="btn btn-light"><a href="#">sua</a></li>
+                                                        <br>
+                                                        <li class="btn btn-light"><a href="#">xoa</a></li>
                                                     </ul>
                                                 </div>
-                                                <p><strong>admin </strong>- September 12, 2022</p>
-                                                <span>roadthemes</span>
+                                                @endcan
+                                                <p>
+                                                    <span class="font-weight-bold">{{ $com->cus->name }}</span>
+                                                    <span class="text-muted">{{ $com->created_at->format('d/m/Y') }}</span>
+                                                </p>
+                                                <span>{{ $com->comment}}</span>
                                             </div>
                                         </div>
-
                                     </div>
-                                    <div class="comment_title">
+                                    @endforeach
+                                    <div class="comment_title" style="text-align: center">
                                         <h2>Add a review </h2>
-                                        <p>Your email address will not be published. Required fields are marked </p>
-                                    </div>
-                                    <div class="product_ratting mb-10">
-                                        <h3>Your rating</h3>
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                        </ul>
                                     </div>
                                     <div class="product_review_form">
-                                        <form action="#">
+                                        <form action="{{ route('client.comment' , $product->id) }}" method="POST">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <label for="review_comment">Your review </label>
-                                                    <textarea name="comment" id="review_comment"></textarea>
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <label for="author">Name</label>
-                                                    <input id="author" type="text">
-
-                                                </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <label for="email">Email </label>
-                                                    <input id="email" type="text">
+                                                    <label for="review_comment"></label>
+                                                    <textarea name="comment" id="review_comment" placeholder="Your review "></textarea>
                                                 </div>
                                             </div>
                                             <button type="submit">Submit</button>
