@@ -316,12 +316,13 @@
                                 </div>
                                 <div class="middel_right_info">
                                     <div class="header_wishlist">
-                                        <a href="wishlist.html"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
+                                        <a href="{{ route('client.wishlish') }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
                                         <span class="wishlist_quantity">3</span>
                                     </div>
                                     <div class="mini_cart_wrapper">
-                                        <a href="javascript:void(0)"><i class="fa fa-shopping-bag"
-                                                aria-hidden="true"></i>$147.00 <i class="fa fa-angle-down"></i></a>
+                                        <a href="javascript:void(0)">
+                                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>$147.00 <i class="fa fa-angle-down"></i>
+                                        </a>
                                         <span class="cart_quantity">2</span>
                                         <!--mini cart-->
                                         <div class="mini_cart">

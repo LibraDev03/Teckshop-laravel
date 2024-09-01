@@ -72,11 +72,19 @@
                                             </div>
                                             <div class="action_links">
                                                 <ul>
-                                                    <li class="wishlist">
-                                                        <a href="wishlist.html" title="Add to Wishlist">
-                                                            <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                                        </a>
-                                                    </li>
+                                                    @if ($prod->favorited)
+                                                        <li class="wishlist">
+                                                            <a title="disslike" href="{{ route('client.favorite', $prod->id) }}" title="Add to Wishlist">
+                                                                <i class="fa fa-heart" aria-hidden="true"></i>
+                                                            </a>
+                                                        </li>
+                                                    @else
+                                                        <li class="wishlist">
+                                                            <a title="disslike" href="{{ route('client.favorite', $prod->id) }}" title="Add to Wishlist">
+                                                                <i class="fa fa-heart-o" aria-hidden="true"></i>
+                                                            </a>
+                                                        </li>
+                                                    @endif
                                                     <li class="compare">
                                                         <a href="#" title="compare"><span class="ion-levels"></span>
                                                         </a>

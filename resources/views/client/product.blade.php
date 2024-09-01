@@ -236,6 +236,7 @@
                                     <div class="comment_title" style="text-align: center">
                                         <h2>Add a review </h2>
                                     </div>
+                                    @if (auth()->check())
                                     <div class="product_review_form">
                                         <form action="{{ route('client.comment' , $product->id) }}" method="POST">
                                             @csrf
@@ -248,6 +249,7 @@
                                             <button type="submit">Submit</button>
                                         </form>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>

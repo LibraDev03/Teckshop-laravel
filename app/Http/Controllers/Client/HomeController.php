@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Comment;
+use App\Models\Favorite;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -45,4 +46,27 @@ class HomeController extends Controller
             return redirect()->back();
         }
     }
+    
+    public function favorite(Product $product) {
+        $data = [
+            'product_id' => $product->id,
+            'user_id' => auth()->user()->id
+        ];
+        // dd($data);
+
+        $favorited = Favorite::where(['product_id'=> $product->id , 'user_id'=> auth()->user()->id])->first();
+        if($favorited) {
+            $favorited->delete();
+            return redirect()->back();
+        }else{
+            Favorite::create($data);
+            return redirect()->back();
+        }
+    }
+
+    public function wishlish() {
+        $favorites = auth()->user()->favorites;
+        return view('client.wishlish', compact('favorites'));
+    }
+
 }

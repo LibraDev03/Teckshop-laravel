@@ -62,13 +62,16 @@ Route::group(['prefix' =>'client'], function() {
     Route::get('/blog' , function(){ return view('client.blog'); })->name('client.blog');
     Route::get('/about' , function(){ return view('client.about'); })->name('client.about');
     Route::get('/contact' , function(){ return view('client.contact');})->name('client.contact');
-
+    
     // truy vấn category ra ngoài client theo id của nó
     Route::get('/category/{cat}', [HomeController::class, 'category'])->name('client.category');
     // chi tiết sản phầm ra ngoài client theo id của nó
     Route::get('/product/{product}', [HomeController::class, 'product'])->name('client.product');
-
+    
     // làm comment cho sản phẩm
     Route::post('/comment/{product}', [HomeController::class, 'comment'])->name('client.comment');
+    // làm yêu thích sản phẩm 
+    Route::get('/favorite/{product}', [HomeController::class, 'favorite'])->name('client.favorite');
+    Route::get('/wishlish', [HomeController::class, 'wishlish'])->name('client.wishlish');
 
 });

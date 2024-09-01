@@ -29,6 +29,7 @@ class AuthController extends Controller
         ]);
 
         $data = request()->only('email','password');         // Lấy tất cả dữ liệu từ yêu cầu HTTP, cả dữ liệu từ các input fields trong form, và lưu trữ chúng vào biến $data.
+        // dd($data);
         if(auth()->attempt($data)) {                        // auth->attempt là kiểm tra thông tin có trên csdl trùng khớp là true còn lại false
             
             $role = auth()?->user()?->role;                 //ktra neu auth co du lieu tra ve db user , neu user co du lieu tra ve cot role trong bang user
@@ -59,8 +60,10 @@ class AuthController extends Controller
         ]);
 
         $data = request()->only('email','name','role');
-        $data['password'] = bcrypt(request('password'));    // mã hóa mật khẩu và gán vào biến data
-        User::create($data);                                // chèn các dữ liệu ở biến $data vào bảng User  
+        $data['password'] = bcrypt(request('password'));    // mã hóa mật khẩu bằng hàm bcrypt và gán vào biến data
+        
+        // dd($data);
+        User::create($data);
         return redirect()->route('authen.login');
     }
 
@@ -86,7 +89,7 @@ class AuthController extends Controller
             $user->password = Hash::make($validated['newpassword']);
             $user->save();
     
-            return redirect()->route('authen.login');
+            return redirect()->route('authen.login')->with('no', 'change success your password');
         }else {
             return back();
         }
