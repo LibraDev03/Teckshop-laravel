@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Cart;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Category;
+use App\Models\Favorite;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,10 +22,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // truyền dữ liệu category ra ngoài trang client
+        // truyền dữ liệu ra ngoài trang client (coi như biến toàn cục global)
         view()->composer('*', function($view){
             $cats_home = Category::orderBy('name','DESC')->get();
-            $view->with(compact('cats_home'));
+            $wishlist = Favorite::where('user_id', auth()->id())->get();
+            $carts = Cart::where('user_id', auth()->id())->get();
+            $view->with(compact('cats_home','carts','wishlist'));
         });
     }
 }

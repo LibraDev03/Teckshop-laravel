@@ -198,14 +198,14 @@
                                         </ul>
                                     </div>
                                     <div class="add_to_cart">
-                                        <a href="cart.html" title="add to cart">Add to cart</a>
+                                        <a href="{{ route('client.cart.add', $fp->id) }}" title="add to cart">Add to cart</a>
                                     </div>
                                 </div>
                                 <figcaption class="product_content">
                                     <div class="price_box">
                                         <span class="name_product"><b>{{ $fp->cat->name}}</b></span>
                                         <br>
-                                        <span class="current_price">${{ $fp->price }}</span>
+                                        <span class="current_price">${{ number_format($fp->price) }}</span>
                                     </div>
                                     <h3 class="product_name"><a href="product-countdown.html">{{ $fp->name }}</a></h3>
                                 </figcaption>
@@ -380,14 +380,14 @@
                                         </ul>
                                     </div>
                                     <div class="add_to_cart">
-                                        <a href="cart.html" title="add to cart">Add to cart</a>
+                                        <a href="{{ route('client.cart.add', $np->id) }}" title="add to cart">Add to cart</a>
                                     </div>
                                 </div>
                                 <figcaption class="product_content">
                                     <div class="price_box">
                                         <span class="name_product"><b>{{ $np->cat->name }}</b></span>
                                         <br>
-                                        <span class="current_price">${{ $np->price}}</span>
+                                        <span class="current_price">${{ number_format($np->price) }}</span>
                                     </div>
                                     <h3 class="product_name"><a href="product-details.html">{{ $np->name }}</a></h3>
                                 </figcaption>
@@ -424,13 +424,13 @@
                                     </div>
                                     <figcaption class="product_content">
                                         <div class="price_box">
-                                            <span class="current_price">${{ $fp->price }}</span>
+                                            <span class="current_price">${{ number_format($fp->price) }}</span>
                                             <br>
                                             <span class="name_product">{{ $fp->name}}</span>
                                         </div>
                                         <h3 class="product_name"><a href="product-details.html">Test product for hoangsonnguyen's website</a></h3>
                                         <div class="add_to_cart">
-                                            <a href="cart.html" title="add to cart">Add to cart</a>
+                                            <a href="{{ route('client.cart.add', $fp->id) }}" title="add to cart">Add to cart</a>
                                         </div>
                                     </figcaption>
                                 </figure>

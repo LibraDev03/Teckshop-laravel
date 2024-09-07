@@ -97,14 +97,14 @@
                                                 </ul>
                                             </div>
                                             <div class="add_to_cart">
-                                                <a href="cart.html" title="add to cart">Add to cart</a>
+                                                <a href="{{ route('client.cart.add', $prod->id) }}" title="add to cart">Add to cart</a>
                                             </div>
                                         </div>
                                         <div class="product_content grid_content">
                                             <div class="price_box">
                                                 <span class="name"><b>{{ $prod->cat->name }}</b></span>
                                                 <br>
-                                                <span class="current_price">${{ $prod->price }}</span>
+                                                <span class="current_price">${{ number_format($prod->price) }}</span>
                                             </div>
                                             <div class="product_ratings">
                                                 {{-- phần đánh giá chất lượng sản pahamr theo sao --}}

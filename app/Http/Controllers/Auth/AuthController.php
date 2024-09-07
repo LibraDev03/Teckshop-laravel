@@ -16,23 +16,23 @@ class AuthController extends Controller
         return view('authen.authen');
     }
 
-     // điều hướng đến trang đăng kí tk
     public function login() {           
         return view('authen.login');
     }
 
     // check lại dữ liệu đăng kí tk
     public function check_login() {      
-        request()->validate([                               // validate để xác thực dữ liệu từ yêu cầu từ HTTP request
+        request()->validate([
             'email' => 'required|email|exists:users',
             'password' => 'required',
         ]);
 
-        $data = request()->only('email','password');         // Lấy tất cả dữ liệu từ yêu cầu HTTP, cả dữ liệu từ các input fields trong form, và lưu trữ chúng vào biến $data.
+        $data = request()->all('email','password');
+
         // dd($data);
         if(auth()->attempt($data)) {                        // auth->attempt là kiểm tra thông tin có trên csdl trùng khớp là true còn lại false
             
-            $role = auth()?->user()?->role;                 //ktra neu auth co du lieu tra ve db user , neu user co du lieu tra ve cot role trong bang user
+            $role = auth()?->user()?->role;
             if($role != 0) {
                 return redirect()->route('admin.home');
             }else{
@@ -46,7 +46,6 @@ class AuthController extends Controller
 
     }
 
-    // điều hướng đến đăng kí tk
     public function register() {
         return view('authen.register');
     }
@@ -89,7 +88,7 @@ class AuthController extends Controller
             $user->password = Hash::make($validated['newpassword']);
             $user->save();
     
-            return redirect()->route('authen.login')->with('no', 'change success your password');
+            return redirect()->route('authen.logout')->with('no', 'change success your password');
         }else {
             return back();
         }

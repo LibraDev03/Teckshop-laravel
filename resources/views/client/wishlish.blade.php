@@ -47,7 +47,7 @@
                                                 <td class="product_name"><a href="#">{{ $myFav->prodF->name }}</a></td>
                                                 <td class="product-price">${{ $myFav->prodF->price }}</td>
                                                 <td class="product_remove">
-                                                    <a title="disslike" href="{{ route('client.favorite', $myFav->product_id) }}" title="Add to Wishlist">
+                                                    <a title="disslike" href="{{ route('client.favorite', $myFav->product_id) }}">
                                                         <i class="fa fa-heart" aria-hidden="true"></i>
                                                     </a>
                                                 </td>

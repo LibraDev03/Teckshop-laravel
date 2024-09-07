@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Client\CartController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Contracts\Session\Session;
 
@@ -25,15 +26,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// 2route này để làm đăng nhập và check lại đăng nhập (để bên ngoài route authen vì phải đăng nhập ms qua đc authen)
 Route::get('/authen/login' , [AuthController::class, 'login'] )->name('authen.login');
 Route::post('/authen/login' , [AuthController::class, 'check_login']);
 
-// 2route này để làm đăng kí và check lại đăng kí (để bên ngoài route authen vì phải đăng nhập ms qua đc authen)
 Route::get('/authen/register' , [AuthController::class, 'register'] )->name('authen.register');
 Route::post('/authen/register' , [AuthController::class, 'check_register']);
 
-// route làm đăng xuất 
 Route::get('/authen/logout' , [AuthController::class , 'logout'])->name('authen.logout');
 
 // Nhóm route này để làm đăng kí đăng nhập và đăng xuất cho người dùng
@@ -68,10 +66,16 @@ Route::group(['prefix' =>'client'], function() {
     // chi tiết sản phầm ra ngoài client theo id của nó
     Route::get('/product/{product}', [HomeController::class, 'product'])->name('client.product');
     
-    // làm comment cho sản phẩm
     Route::post('/comment/{product}', [HomeController::class, 'comment'])->name('client.comment');
-    // làm yêu thích sản phẩm 
+    
     Route::get('/favorite/{product}', [HomeController::class, 'favorite'])->name('client.favorite');
     Route::get('/wishlish', [HomeController::class, 'wishlish'])->name('client.wishlish');
 
+
+    Route::group(['prefix'=> 'cart'], function(){
+        Route::get('/', [CartController::class, 'index'])->name('client.cart.index');
+        Route::get('/add/{product}', [CartController::class, 'add'])->name('client.cart.add');
+        Route::get('/update/{product}', [CartController::class, 'update'] )->name('client.cart.update');
+        Route::get('/delete/{product}', [CartController::class, 'delete'])->name('client.cart.delete');
+    });
 });

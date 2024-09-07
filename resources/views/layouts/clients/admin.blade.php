@@ -317,62 +317,53 @@
                                 <div class="middel_right_info">
                                     <div class="header_wishlist">
                                         <a href="{{ route('client.wishlish') }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                        <span class="wishlist_quantity">3</span>
+                                        <span class="wishlist_quantity">{{ $wishlist->count()}}</span>
                                     </div>
                                     <div class="mini_cart_wrapper">
-                                        <a href="javascript:void(0)">
+                                        <a href="{{ route('client.cart.index') }}">
                                             <i class="fa fa-shopping-bag" aria-hidden="true"></i>$147.00 <i class="fa fa-angle-down"></i>
                                         </a>
-                                        <span class="cart_quantity">2</span>
-                                        <!--mini cart-->
-                                        <div class="mini_cart">
-                                            <div class="cart_item">
-                                                <div class="cart_img">
-                                                    <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
-                                                </div>
-                                                <div class="cart_info">
-                                                    <a href="#">Sit voluptatem rhoncus sem lectus</a>
-                                                    <p>Qty: 1 X <span> $60.00 </span></p>
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="cart_item">
-                                                <div class="cart_img">
-                                                    <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
-                                                </div>
-                                                <div class="cart_info">
-                                                    <a href="#">Natus erro at congue massa commodo</a>
-                                                    <p>Qty: 1 X <span> $60.00 </span></p>
-                                                </div>
-                                                <div class="cart_remove">
-                                                    <a href="#"><i class="ion-android-close"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="mini_cart_table">
-                                                <div class="cart_total">
-                                                    <span>Sub total:</span>
-                                                    <span class="price">$138.00</span>
-                                                </div>
-                                                <div class="cart_total mt-10">
-                                                    <span>total:</span>
-                                                    <span class="price">$138.00</span>
-                                                </div>
-                                            </div>
+                                        <span class="cart_quantity">{{ $carts->sum('quantity')}}</span>
+                                        @foreach ($carts as $item)
+                                            <!--mini cart-->
+                                                <div class="mini_cart">
+                                                    <div class="cart_item">
+                                                        <div class="cart_img">
+                                                            <a href="#"><img src="{{asset('assets/img/product/' . $item->prodC->image)}}" alt=""></a>
+                                                        </div>
+                                                        <div class="cart_info">
+                                                            <a href="#">{{$item->prodC->name}}</a>
+                                                            <p>Qty: {{$item->quantity}} X <span>{{ number_format($item->prodC->price)}}</span></p>
+                                                        </div>
+                                                        <div class="cart_remove">
+                                                            <a href="#"><i class="ion-android-close"></i></a>
+                                                        </div>
+                                                    </div>
 
-                                            <div class="mini_cart_footer">
-                                                <div class="cart_button">
-                                                    <a href="cart.html">View cart</a>
-                                                </div>
-                                                <div class="cart_button">
-                                                    <a href="checkout.html">Checkout</a>
-                                                </div>
+                                                    <div class="mini_cart_table">
+                                                        <div class="cart_total">
+                                                            <span>Sub total shipping:</span>
+                                                            <span class="price">$7.00</span>
+                                                        </div>
+                                                        <div class="cart_total mt-10">
+                                                            <span>total:</span>
+                                                            <span class="price">$138.00</span>
+                                                        </div>
+                                                    </div>
 
-                                            </div>
+                                                    <div class="mini_cart_footer">
+                                                        <div class="cart_button">
+                                                            <a href="{{ route('client.cart.index') }}">View cart</a>
+                                                        </div>
+                                                        <div class="cart_button">
+                                                            <a href="checkout.html">Checkout</a>
+                                                        </div>
 
-                                        </div>
-                                        <!--mini cart end-->
+                                                    </div>
+
+                                                </div>
+                                            <!--mini cart end-->
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

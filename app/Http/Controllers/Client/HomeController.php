@@ -65,6 +65,7 @@ class HomeController extends Controller
     }
 
     public function wishlish() {
+        // xác nhận đúng người dùng và đúng wishlish của người dùng 
         $favorites = auth()->user()->favorites;
         return view('client.wishlish', compact('favorites'));
     }
