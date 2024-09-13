@@ -38,6 +38,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <?php $total=0; ?>
                                             @foreach ($carts as $item)
                                             <tr>
                                                 <td class="product_id"> {{ $loop->index+1 }}</td>
@@ -53,6 +54,7 @@
                                                 <td class="product_remove"><a href="{{ route('client.cart.delete', $item->product_id) }}"><i class="fa fa-trash-o"></i></a></td>
     
                                             </tr>
+                                            <?php $total += $item->prodC->price * $item->quantity; ?>
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -84,20 +86,20 @@
                                     <div class="coupon_inner">
                                         <div class="cart_subtotal">
                                             <p>Subtotal</p>
-                                            <p class="cart_amount"></p>
+                                            <p class="cart_amount">$ {{ number_format($total)}}</p>
                                         </div>
                                         <div class="cart_subtotal ">
                                             <p>Shipping</p>
-                                            <p class="cart_amount"><span>Flat Rate:</span>7$</p>
+                                            <p class="cart_amount"><span>Flat Rate:</span>+ 7.00$</p>
                                         </div>
                                         <a href="#">Calculate shipping</a>
 
                                         <div class="cart_subtotal">
                                             <p>Total</p>
-                                            <p class="cart_amount">£215.00</p>
+                                            <p class="cart_amount">$ {{ number_format($total + 7000)}}</p>
                                         </div>
                                         <div class="checkout_btn">
-                                            <a href="#">Proceed to Checkout</a>
+                                            <a href="{{ route('client.checkout') }}">Proceed to Checkout</a>
                                         </div>
                                     </div>
                                 </div>

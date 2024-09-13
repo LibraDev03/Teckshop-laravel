@@ -23,7 +23,7 @@ class Product extends Model
     }
     
     public function getFavoritedAttribute() {
-        $favorited = Favorite::where(['product_id'=> $this->id , 'user_id'=> auth()->user()->id])->first();
+        $favorited = Favorite::where(['product_id'=> $this->id , 'user_id'=> auth()->id()])->first();
         return $favorited ? true : false;
     }
 }

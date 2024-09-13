@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Client\CartController;
+use App\Http\Controllers\Client\CheckoutController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Contracts\Session\Session;
 
@@ -77,5 +78,11 @@ Route::group(['prefix' =>'client'], function() {
         Route::get('/add/{product}', [CartController::class, 'add'])->name('client.cart.add');
         Route::get('/update/{product}', [CartController::class, 'update'] )->name('client.cart.update');
         Route::get('/delete/{product}', [CartController::class, 'delete'])->name('client.cart.delete');
+    });
+
+    Route::group(['prefix' => 'order'], function() {
+        Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkout');
+        Route::post('/checkout', [CheckoutController::class, 'post_checkout']);
+
     });
 });

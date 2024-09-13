@@ -51,8 +51,7 @@
                                                         <i class="fa fa-heart" aria-hidden="true"></i>
                                                     </a>
                                                 </td>
-                                                <td class="product_total"><a href="#">Add To Cart</a></td>
-    
+                                                <td class="product_total"><a href="{{ route('client.cart.add', $myFav->prodF->id) }}">Add To Cart</a></td>
     
                                             </tr>    
                                             @endforeach

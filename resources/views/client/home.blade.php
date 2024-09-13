@@ -207,7 +207,7 @@
                                         <br>
                                         <span class="current_price">${{ number_format($fp->price) }}</span>
                                     </div>
-                                    <h3 class="product_name"><a href="product-countdown.html">{{ $fp->name }}</a></h3>
+                                    <h3 class="product_name"><a href="{{ route('client.product' , $fp->id) }}">{{ $fp->name }}</a></h3>
                                 </figcaption>
                             </figure>
                         </article>
@@ -389,7 +389,7 @@
                                         <br>
                                         <span class="current_price">${{ number_format($np->price) }}</span>
                                     </div>
-                                    <h3 class="product_name"><a href="product-details.html">{{ $np->name }}</a></h3>
+                                    <h3 class="product_name"><a href="{{ route('client.product' , $np->id) }}">{{ $np->name }}</a></h3>
                                 </figcaption>
                             </figure>
                         </article>
@@ -797,10 +797,10 @@
                             <article class="single_blog">
                                 <figure>
                                     <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/blog1.jpg" alt=""></a>
+                                        <a href="{{ route('client.blog') }}"><img src="assets/img/blog/blog1.jpg" alt=""></a>
                                     </div>
                                     <figcaption class="blog_content">
-                                        <p class="post_author">By <a href="#">admin</a> July 04, 2022</p>
+                                        <p class="post_author">By <a href="{{ route('client.blog') }}">admin</a> July 04, 2022</p>
                                         <h3 class="post_title"><a href="blog-details.html">Blog image post</a></h3>
                                     </figcaption>
                                 </figure>
@@ -810,10 +810,10 @@
                             <article class="single_blog">
                                 <figure>
                                     <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/blog2.jpg" alt=""></a>
+                                        <a href="{{ route('client.blog') }}"><img src="assets/img/blog/blog2.jpg" alt=""></a>
                                     </div>
                                     <figcaption class="blog_content">
-                                        <p class="post_author">By <a href="#">admin</a> July 04, 2022</p>
+                                        <p class="post_author">By <a href="{{ route('client.blog') }}">admin</a> July 04, 2022</p>
                                         <h3 class="post_title"><a href="blog-details.html">Post with Gallery</a></h3>
                                     </figcaption>
                                 </figure>
@@ -823,10 +823,10 @@
                             <article class="single_blog">
                                 <figure>
                                     <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/blog3.jpg" alt=""></a>
+                                        <a href="{{ route('client.blog') }}"><img src="assets/img/blog/blog3.jpg" alt=""></a>
                                     </div>
                                     <figcaption class="blog_content">
-                                        <p class="post_author">By <a href="#">admin</a> July 04, 2022</p>
+                                        <p class="post_author">By <a href="{{ route('client.blog') }}">admin</a> July 04, 2022</p>
                                         <h3 class="post_title"><a href="blog-details.html">Post with Audio</a></h3>
                                     </figcaption>
                                 </figure>
@@ -836,10 +836,10 @@
                             <article class="single_blog">
                                 <figure>
                                     <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/blog4.jpg" alt=""></a>
+                                        <a href="{{ route('client.blog') }}"><img src="assets/img/blog/blog4.jpg" alt=""></a>
                                     </div>
                                     <figcaption class="blog_content">
-                                        <p class="post_author">By <a href="#">admin</a> July 04, 2022</p>
+                                        <p class="post_author">By <a href="{{ route('client.blog') }}">admin</a> July 04, 2022</p>
                                         <h3 class="post_title"><a href="blog-details.html">Post with Video</a></h3>
                                     </figcaption>
                                 </figure>
@@ -849,10 +849,10 @@
                             <article class="single_blog">
                                 <figure>
                                     <div class="blog_thumb">
-                                        <a href="blog-details.html"><img src="assets/img/blog/blog5.jpg" alt=""></a>
+                                        <a href="{{ route('client.blog') }}"><img src="assets/img/blog/blog5.jpg" alt=""></a>
                                     </div>
                                     <figcaption class="blog_content">
-                                        <p class="post_author">By <a href="#">admin</a> July 04, 2022</p>
+                                        <p class="post_author">By <a href="{{ route('client.blog') }}">admin</a> July 04, 2022</p>
                                         <h3 class="post_title"><a href="blog-details.html">Maecenas ultricies</a></h3>
                                     </figcaption>
                                 </figure>

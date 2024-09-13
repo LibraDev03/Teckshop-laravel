@@ -216,26 +216,12 @@
                                         <article class="recent_product_list">
                                             <figure>
                                                 <div class="product_thumb">
-                                                    <a href="product-details.html">
+                                                    <a href="{{ route('client.product', $np->id) }}">
                                                         <img src="{{ asset('assets/img/product/' . $np->image) }}" alt="">
                                                     </a>
                                                 </div>
                                                 <div class="product_content">
                                                     <h3><a href="product-details.html">Latest products</a></h3>
-                                                    <div class="product_ratings">
-                                                        <ul>
-                                                            <li><a href="#"><i class="ion-android-star-outline"></i></a>
-                                                            </li>
-                                                            <li><a href="#"><i class="ion-android-star-outline"></i></a>
-                                                            </li>
-                                                            <li><a href="#"><i class="ion-android-star-outline"></i></a>
-                                                            </li>
-                                                            <li><a href="#"><i class="ion-android-star-outline"></i></a>
-                                                            </li>
-                                                            <li><a href="#"><i class="ion-android-star-outline"></i></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
                                                     <div class="price_box">
                                                         <span class="name">{{ $np->name}}</span>
                                                         <span class="current_price">${{ $np->price}}</span>

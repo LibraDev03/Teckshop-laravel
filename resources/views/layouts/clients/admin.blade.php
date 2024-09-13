@@ -261,12 +261,15 @@
                                         @if (Auth::check() && Auth::user()->name)
                                             {{ Auth::user()->name }}
                                         @else
-                                            <p>Guest</p>
                                         @endif
                                     </li>
-                                    <li><a href="{{route('authen.change_password')}}">Change the password</a></li>
-                                    <li><a href="{{route('authen.register')}}">Register</a></li>
-                                    <li><a href="{{ route('authen.logout') }}">Logout</a></li>
+
+                                    @if(Auth::check())
+                                        <li><a href="{{route('authen.change_password')}}">Change the password</a></li>
+                                        <li><a href="{{ route('authen.logout') }}">Logout</a></li>
+                                    @else
+                                    @endif
+
                                 </ul>
                             </div>
                         </div>
@@ -291,21 +294,9 @@
                                         <div class="hover_category">
                                             <select class="select_option" name="select" id="categori1">
                                                 <option selected value="1">All Categories</option>
-                                                <option value="2">Accessories</option>
-                                                <option value="3">Accessories & More</option>
-                                                <option value="4">Butters & Eggs</option>
-                                                <option value="5">Camera & Video </option>
-                                                <option value="6">Mornitors</option>
-                                                <option value="7">Tablets</option>
-                                                <option value="8">Laptops</option>
-                                                <option value="9">Handbags</option>
-                                                <option value="10">Headphone & Speaker</option>
-                                                <option value="11">Herbs & botanicals</option>
-                                                <option value="12">Vegetables</option>
-                                                <option value="13">Shop</option>
-                                                <option value="14">Laptops & Desktops</option>
-                                                <option value="15">Watchs</option>
-                                                <option value="16">Electronic</option>
+                                                @foreach ($cats_home as $cath)
+                                                    <option value="2"><a href="{{ route('client.category', $cath->id) }}">{{ $cath->name }}</a></option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="search_box">
@@ -315,56 +306,113 @@
                                     </form>
                                 </div>
                                 <div class="middel_right_info">
-                                    <div class="header_wishlist">
-                                        <a href="{{ route('client.wishlish') }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                        <span class="wishlist_quantity">{{ $wishlist->count()}}</span>
-                                    </div>
-                                    <div class="mini_cart_wrapper">
-                                        <a href="{{ route('client.cart.index') }}">
-                                            <i class="fa fa-shopping-bag" aria-hidden="true"></i>$147.00 <i class="fa fa-angle-down"></i>
-                                        </a>
-                                        <span class="cart_quantity">{{ $carts->sum('quantity')}}</span>
-                                        @foreach ($carts as $item)
-                                            <!--mini cart-->
-                                                <div class="mini_cart">
-                                                    <div class="cart_item">
-                                                        <div class="cart_img">
-                                                            <a href="#"><img src="{{asset('assets/img/product/' . $item->prodC->image)}}" alt=""></a>
+                                    @if (Auth::check())
+                                        <div class="header_wishlist">
+                                            <a href="{{ route('client.wishlish') }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                            <span class="wishlist_quantity">{{ $wishlist->count()}}</span>
+                                        </div>
+                                        <div class="mini_cart_wrapper">
+                                            <a href="{{ route('client.cart.index') }}">
+                                                <i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <span class="cart_quantity">{{ $carts->sum('quantity')}}</span>
+                                            <?php $total = 0; ?>
+                                            @foreach ($carts as $item)
+                                                <!--mini cart-->
+                                                    <div class="mini_cart">
+                                                        <div class="cart_item">
+                                                            <div class="cart_img">
+                                                                <a href="#"><img src="{{asset('assets/img/product/' . $item->prodC->image)}}" alt=""></a>
+                                                            </div>
+                                                            <div class="cart_info">
+                                                                <a href="#">{{$item->prodC->name}}</a>
+                                                                <p>Qty: {{$item->quantity}} X <span>{{ number_format($item->prodC->price)}}</span></p>
+                                                            </div>
+                                                            <div class="cart_remove">
+                                                                <a href="#"><i class="ion-android-close"></i></a>
+                                                            </div>
                                                         </div>
-                                                        <div class="cart_info">
-                                                            <a href="#">{{$item->prodC->name}}</a>
-                                                            <p>Qty: {{$item->quantity}} X <span>{{ number_format($item->prodC->price)}}</span></p>
+
+                                                        <div class="mini_cart_table">
+                                                            <div class="cart_total">
+                                                                <span>Sub total shipping:</span>
+                                                                <span class="price">+ $7.00</span>
+                                                            </div>
+                                                            <div class="cart_total mt-10">
+                                                                <span>total:</span>
+                                                                <span class="price">${{number_format($total +7000)}}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="cart_remove">
-                                                            <a href="#"><i class="ion-android-close"></i></a>
+
+                                                        <div class="mini_cart_footer">
+                                                            <div class="cart_button">
+                                                                <a href="{{ route('client.cart.index') }}">View cart</a>
+                                                            </div>
+                                                            <div class="cart_button">
+                                                                <a href="{{ route('client.checkout') }}">Checkout</a>
+                                                            </div>
+
                                                         </div>
+
                                                     </div>
+                                                    <?php $total = $item->prodC->price * $item->quantity; ?>
+                                                <!--mini cart end-->
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <div class="header_wishlist">
+                                            <a href="{{ route('authen.login') }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                            <span class="wishlist_quantity">{{ $wishlist->count()}}</span>
+                                        </div>
+                                        <div class="mini_cart_wrapper">
+                                            <a href="{{ route('authen.login') }}">
+                                                <i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-angle-down"></i>
+                                            </a>
+                                            <span class="cart_quantity">{{ $carts->sum('quantity')}}</span>
+                                            <?php $total = 0; ?>
+                                            @foreach ($carts as $item)
+                                                <!--mini cart-->
+                                                    <div class="mini_cart">
+                                                        <div class="cart_item">
+                                                            <div class="cart_img">
+                                                                <a href="#"><img src="{{asset('assets/img/product/' . $item->prodC->image)}}" alt=""></a>
+                                                            </div>
+                                                            <div class="cart_info">
+                                                                <a href="#">{{$item->prodC->name}}</a>
+                                                                <p>Qty: {{$item->quantity}} X <span>{{ number_format($item->prodC->price)}}</span></p>
+                                                            </div>
+                                                            <div class="cart_remove">
+                                                                <a href="#"><i class="ion-android-close"></i></a>
+                                                            </div>
+                                                        </div>
 
-                                                    <div class="mini_cart_table">
-                                                        <div class="cart_total">
-                                                            <span>Sub total shipping:</span>
-                                                            <span class="price">$7.00</span>
+                                                        <div class="mini_cart_table">
+                                                            <div class="cart_total">
+                                                                <span>Sub total shipping:</span>
+                                                                <span class="price">+ $7.00</span>
+                                                            </div>
+                                                            <div class="cart_total mt-10">
+                                                                <span>total:</span>
+                                                                <span class="price">${{number_format($total +7000)}}</span>
+                                                            </div>
                                                         </div>
-                                                        <div class="cart_total mt-10">
-                                                            <span>total:</span>
-                                                            <span class="price">$138.00</span>
+
+                                                        <div class="mini_cart_footer">
+                                                            <div class="cart_button">
+                                                                <a href="{{ route('client.cart.index') }}">View cart</a>
+                                                            </div>
+                                                            <div class="cart_button">
+                                                                <a href="{{ route('client.checkout') }}">Checkout</a>
+                                                            </div>
+
                                                         </div>
+
                                                     </div>
-
-                                                    <div class="mini_cart_footer">
-                                                        <div class="cart_button">
-                                                            <a href="{{ route('client.cart.index') }}">View cart</a>
-                                                        </div>
-                                                        <div class="cart_button">
-                                                            <a href="checkout.html">Checkout</a>
-                                                        </div>
-
-                                                    </div>
-
-                                                </div>
-                                            <!--mini cart end-->
-                                        @endforeach
-                                    </div>
+                                                    <?php $total = $item->prodC->price * $item->quantity; ?>
+                                                <!--mini cart end-->
+                                            @endforeach
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -384,125 +432,9 @@
                                 </div>
                                 <div class="categories_menu_toggle">
                                     <ul>
-                                        <li class="menu_item_children"><a href="#">Brake Parts <i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <ul class="categories_mega_menu">
-                                                <li class="menu_item_children"><a href="#">Dresses</a>
-                                                    <ul class="categorie_sub_menu">
-                                                        <li><a href="#">Sweater</a></li>
-                                                        <li><a href="#">Evening</a></li>
-                                                        <li><a href="#">Day</a></li>
-                                                        <li><a href="#">Sports</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu_item_children"><a href="#">Handbags</a>
-                                                    <ul class="categorie_sub_menu">
-                                                        <li><a href="#">Shoulder</a></li>
-                                                        <li><a href="#">Satchels</a></li>
-                                                        <li><a href="#">kids</a></li>
-                                                        <li><a href="#">coats</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu_item_children"><a href="#">shoes</a>
-                                                    <ul class="categorie_sub_menu">
-                                                        <li><a href="#">Ankle Boots</a></li>
-                                                        <li><a href="#">Clog sandals </a></li>
-                                                        <li><a href="#">run</a></li>
-                                                        <li><a href="#">Books</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu_item_children"><a href="#">Clothing</a>
-                                                    <ul class="categorie_sub_menu">
-                                                        <li><a href="#">Coats Jackets </a></li>
-                                                        <li><a href="#">Raincoats</a></li>
-                                                        <li><a href="#">Jackets</a></li>
-                                                        <li><a href="#">T-shirts</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu_item_children"><a href="#"> Wheels & Tires <i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <ul class="categories_mega_menu column_3">
-                                                <li class="menu_item_children"><a href="#">Chair</a>
-                                                    <ul class="categorie_sub_menu">
-                                                        <li><a href="#">Dining room</a></li>
-                                                        <li><a href="#">bedroom</a></li>
-                                                        <li><a href="#"> Home & Office</a></li>
-                                                        <li><a href="#">living room</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu_item_children"><a href="#">Lighting</a>
-                                                    <ul class="categorie_sub_menu">
-                                                        <li><a href="#">Ceiling Lighting</a></li>
-                                                        <li><a href="#">Wall Lighting</a></li>
-                                                        <li><a href="#">Outdoor Lighting</a></li>
-                                                        <li><a href="#">Smart Lighting</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu_item_children"><a href="#">Sofa</a>
-                                                    <ul class="categorie_sub_menu">
-                                                        <li><a href="#">Fabric Sofas</a></li>
-                                                        <li><a href="#">Leather Sofas</a></li>
-                                                        <li><a href="#">Corner Sofas</a></li>
-                                                        <li><a href="#">Sofa Beds</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu_item_children"><a href="#"> Furnitured & Decor <i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <ul class="categories_mega_menu column_2">
-                                                <li class="menu_item_children"><a href="#">Brake Tools</a>
-                                                    <ul class="categorie_sub_menu">
-                                                        <li><a href="#">Driveshafts</a></li>
-                                                        <li><a href="#">Spools</a></li>
-                                                        <li><a href="#">Diesel </a></li>
-                                                        <li><a href="#">Gasoline</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu_item_children"><a href="#">Emergency Brake</a>
-                                                    <ul class="categorie_sub_menu">
-                                                        <li><a href="#">Dolls for Girls</a></li>
-                                                        <li><a href="#">Girls' Learning Toys</a></li>
-                                                        <li><a href="#">Arts and Crafts for Girls</a></li>
-                                                        <li><a href="#">Video Games for Girls</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="menu_item_children"><a href="#"> Turbo System <i
-                                                    class="fa fa-angle-right"></i></a>
-                                            <ul class="categories_mega_menu column_2">
-                                                <li class="menu_item_children"><a href="#">Check Trousers</a>
-                                                    <ul class="categorie_sub_menu">
-                                                        <li><a href="#">Building</a></li>
-                                                        <li><a href="#">Electronics</a></li>
-                                                        <li><a href="#">action figures </a></li>
-                                                        <li><a href="#">specialty & boutique toy</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="menu_item_children"><a href="#">Calculators</a>
-                                                    <ul class="categorie_sub_menu">
-                                                        <li><a href="#">Dolls for Girls</a></li>
-                                                        <li><a href="#">Girls' Learning Toys</a></li>
-                                                        <li><a href="#">Arts and Crafts for Girls</a></li>
-                                                        <li><a href="#">Video Games for Girls</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#"> Lighting</a></li>
-                                        <li><a href="#"> Accessories</a></li>
-                                        <li><a href="#">Body Parts</a></li>
-                                        <li><a href="#">Perfomance Filters</a></li>
-                                        <li><a href="#"> Engine Parts</a></li>
-                                        <li id="cat_toggle" class="has-sub"><a href="#"> More Categories</a>
-                                            <ul class="categorie_sub">
-                                                <li><a href="#">Hide Categories</a></li>
-                                            </ul>
-
-                                        </li>
+                                        @foreach ($cats_home as $cath)
+                                            <li><a href="{{ route('client.category', $cath->id) }}">{{ $cath->name }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
@@ -512,7 +444,7 @@
                                 <nav>
                                     <ul>
                                         <li><a class="" href="{{ route('admin.home') }}">home</a></li>
-                                        <li ><a href="" class="">shop<i class="fa fa-angle-down"></i></a>
+                                        <li ><a href="hello" class="">shop<i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
                                                 @foreach ($cats_home as $cath)
                                                     <li><a href="{{ route('client.category', $cath->id) }}">{{ $cath->name }}</a></li>
@@ -582,62 +514,56 @@
                         </div>
                         <div class="middel_right_info">
                             <div class="header_wishlist">
-                                <a href="wishlist.html"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                                <span class="wishlist_quantity">3</span>
+                                <a href="{{ route('client.wishlish') }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                <span class="wishlist_quantity">{{ $wishlist->count()}}</span>
                             </div>
                             <div class="mini_cart_wrapper">
-                                <a href="javascript:void(0)"><i class="fa fa-shopping-bag"
-                                        aria-hidden="true"></i>$147.00 <i class="fa fa-angle-down"></i></a>
-                                <span class="cart_quantity">2</span>
-                                <!--mini cart-->
-                                <div class="mini_cart">
-                                    <div class="cart_item">
-                                        <div class="cart_img">
-                                            <a href="#"><img src="assets/img/s-product/product.jpg" alt=""></a>
-                                        </div>
-                                        <div class="cart_info">
-                                            <a href="#">Sit voluptatem rhoncus sem lectus</a>
-                                            <p>Qty: 1 X <span> $60.00 </span></p>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="cart_item">
-                                        <div class="cart_img">
-                                            <a href="#"><img src="assets/img/s-product/product2.jpg" alt=""></a>
-                                        </div>
-                                        <div class="cart_info">
-                                            <a href="#">Natus erro at congue massa commodo</a>
-                                            <p>Qty: 1 X <span> $60.00 </span></p>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a href="#"><i class="ion-android-close"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="mini_cart_table">
-                                        <div class="cart_total">
-                                            <span>Sub total:</span>
-                                            <span class="price">$138.00</span>
-                                        </div>
-                                        <div class="cart_total mt-10">
-                                            <span>total:</span>
-                                            <span class="price">$138.00</span>
-                                        </div>
-                                    </div>
+                                <a href="{{ route('client.cart.index') }}">
+                                    <i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-angle-down"></i>
+                                </a>
+                                <span class="cart_quantity">{{ $carts->sum('quantity')}}</span>
+                                <?php $total = 0; ?>
+                                @foreach ($carts as $item)
+                                    <!--mini cart-->
+                                        <div class="mini_cart">
+                                            <div class="cart_item">
+                                                <div class="cart_img">
+                                                    <a href="#"><img src="{{asset('assets/img/product/' . $item->prodC->image)}}" alt=""></a>
+                                                </div>
+                                                <div class="cart_info">
+                                                    <a href="#">{{$item->prodC->name}}</a>
+                                                    <p>Qty: {{$item->quantity}} X <span>{{ number_format($item->prodC->price)}}</span></p>
+                                                </div>
+                                                <div class="cart_remove">
+                                                    <a href="#"><i class="ion-android-close"></i></a>
+                                                </div>
+                                            </div>
 
-                                    <div class="mini_cart_footer">
-                                        <div class="cart_button">
-                                            <a href="cart.html">View cart</a>
-                                        </div>
-                                        <div class="cart_button">
-                                            <a href="checkout.html">Checkout</a>
-                                        </div>
+                                            <div class="mini_cart_table">
+                                                <div class="cart_total">
+                                                    <span>Sub total shipping:</span>
+                                                    <span class="price">+ $7.00</span>
+                                                </div>
+                                                <div class="cart_total mt-10">
+                                                    <span>total:</span>
+                                                    <span class="price">${{number_format($total +7000)}}</span>
+                                                </div>
+                                            </div>
 
-                                    </div>
+                                            <div class="mini_cart_footer">
+                                                <div class="cart_button">
+                                                    <a href="{{ route('client.cart.index') }}">View cart</a>
+                                                </div>
+                                                <div class="cart_button">
+                                                    <a href="{{ route('client.checkout') }}">Checkout</a>
+                                                </div>
 
-                                </div>
-                                <!--mini cart end-->
+                                            </div>
+
+                                        </div>
+                                        <?php $total = $item->prodC->price * $item->quantity; ?>
+                                    <!--mini cart end-->
+                                @endforeach
                             </div>
                         </div>
                     </div>
