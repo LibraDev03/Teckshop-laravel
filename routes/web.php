@@ -6,6 +6,7 @@ use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
@@ -46,6 +47,9 @@ Route::group(['prefix' => 'authen' , 'middleware'=> 'auth'], function() {
 // Nhóm route này để có thể vào dashboard cho admin 
 Route::group(['prefix' => 'admin',"middleware" => "checkAdmin"], function() {
     Route::get('/', [DashboardController::class , 'dashboard'])->name('admin.dashboard'); 
+    Route::get('/order', [OrderController::class, 'order'])->name('admin.order');
+    Route::get('/details/{order}', [OrderController::class, 'details'])->name('admin.details');
+
 
     Route::resources([
         'user' => UserController::class,
@@ -82,6 +86,8 @@ Route::group(['prefix' =>'client'], function() {
 
     Route::group(['prefix' => 'order'], function() {
         Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('client.checkout');
+        Route::get('/history', [CheckoutController::class, 'history'])->name('client.history');
+        Route::get('/detail/{order}', [CheckoutController::class, 'detail'])->name('client.detail');
         Route::post('/checkout', [CheckoutController::class, 'post_checkout']);
 
     });

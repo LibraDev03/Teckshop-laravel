@@ -1549,9 +1549,14 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   }
 }
 
-.cart_button:first-child {
-  margin-bottom: 15px;
+.cart_button {
+  margin-bottom: 15px; /* Tạo khoảng cách cho tất cả các khối */
 }
+
+.cart_button:last-child {
+  margin-bottom: 0; /* Xóa khoảng cách cho khối cuối cùng */
+}
+
 .cart_button a {
   text-transform: uppercase;
   border-radius: 3px;
@@ -1565,6 +1570,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
   padding: 13px 0px 11px;
   border: 1px solid #ebebeb;
 }
+
 .cart_button a:hover {
   background: #0063d1;
   border-color: #0063d1;

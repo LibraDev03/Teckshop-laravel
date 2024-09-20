@@ -11,8 +11,17 @@ use Illuminate\Http\Request;
 class CheckoutController extends Controller
 {
     public function checkout(){
-        
         return view('client.checkout');
+    }
+
+    public function history(){
+        $auth = auth()->user();
+        return  view('client.history', compact('auth'));
+    }
+
+    public function detail(Order $order){
+        $auth = auth()->user();
+        return  view('client.detail', compact('auth', 'order'));
     }
 
     public function post_checkout(Request $request){

@@ -351,7 +351,9 @@
                                                             <div class="cart_button">
                                                                 <a href="{{ route('client.checkout') }}">Checkout</a>
                                                             </div>
-
+                                                            <div class="cart_button">
+                                                                <a href="{{ route('client.history') }}">Order history</a>
+                                                            </div>
                                                         </div>
 
                                                     </div>
