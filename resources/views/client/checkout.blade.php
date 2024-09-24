@@ -115,7 +115,7 @@
                                             </tr>
                                             <tr class="order_total">
                                                 <th>Order Total</th>
-                                                <td><strong>${{ number_format($total + 7000) }} </strong></td>
+                                                <td><strong>${{ number_format($total + 7000) }}</strong></td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -162,18 +162,25 @@
                                         <div class="panel-default">
                                             <input id="payment_defult" name="payment_method" type="radio"/>
                                             <label for="payment_defult" data-bs-toggle="collapse" data-bs-target="#collapsedefult"
-                                                aria-controls="collapsedefult">COD (Cash on Delivery)
+                                                aria-controls="collapsedefult">COD (Cash on Delivery)(Thanh toán khi nhận hàng)
                                             </label>
                                             <br>
-                                            <input id="payment_defult" name="payment_method" type="radio"/>
+                                            {{-- <input id="payment_defult" name="payment_method" type="radio"/>
                                             <label for="payment_defult" data-bs-toggle="collapse" data-bs-target="#collapsedefult"
                                                 aria-controls="collapsedefult">PayPal=<img src="{{ asset('assets/img/icon/papyel.png')}}" alt="">
-                                            </label>
+                                            </label> --}}
                                         </div>
                                         <div class="order_button">
-                                            <button type="submit">Proceed to PayPal</button>
+                                            <button type="submit">thanh toan binh thuong</button>
                                         </div>
                                     </div>
+                                </div>
+                            </form>
+                            <form action="{{ route('vnpay_payments') }}" method="POST">
+                                @csrf
+                                <div class="order_button">
+                                    <input type="hidden" name="total" value="{{$total}}" >
+                                    <button type="submit" name="redirect">Thanh toan vnpay</button>
                                 </div>
                             </form>
                         </div>

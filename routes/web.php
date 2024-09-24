@@ -10,7 +10,9 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
+use App\Http\Controllers\Client\PaymentsController;
 use App\Http\Middleware\Authenticate;
+use Faker\Provider\ar_EG\Payment;
 use Illuminate\Contracts\Session\Session;
 
 /*
@@ -90,5 +92,9 @@ Route::group(['prefix' =>'client'], function() {
         Route::get('/detail/{order}', [CheckoutController::class, 'detail'])->name('client.detail');
         Route::post('/checkout', [CheckoutController::class, 'post_checkout']);
 
+    });
+
+    Route::group(['prefix' => 'payments'], function() {
+        Route::post('/vnpay_payments', [PaymentsController::class, 'vnpay_payments'])->name('vnpay_payments');
     });
 });
