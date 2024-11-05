@@ -39,7 +39,7 @@
     </div>
     <style>
         .description-column {
-            width: 400px;
+            width: 300px;
             height: 100px;
             overflow: hidden; /* Ẩn phần nội dung tràn */
             text-overflow: ellipsis; /* Hiển thị dấu ba chấm nếu nội dung quá dài */

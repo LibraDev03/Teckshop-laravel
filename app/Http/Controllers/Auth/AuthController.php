@@ -34,13 +34,13 @@ class AuthController extends Controller
             
             $role = auth()?->user()?->role;
             if($role != 0) {
-                return redirect()->route('admin.home');
+                return redirect()->route('admin.home')->with('suc', 'dang nhap thanh cong');
             }else{
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.dashboard')->with('suc', 'dang nhap thanh cong');
             }
         }else {
             // Đăng nhập thất bại
-            return redirect()->back()->with('no', 'email or password is incorrect');
+            return redirect()->back()->with('fail', 'email or password is incorrect');
         }
 
 
@@ -68,7 +68,7 @@ class AuthController extends Controller
 
     public function logout() {
         Auth::logout();
-        return redirect()->route('authen.login');
+        return redirect()->route('authen.login')->with('fail', 'dang xuat thanh cong');
     }
 
     public function change_password() {           
@@ -104,7 +104,7 @@ class AuthController extends Controller
     }
 
     public function profile() {           
-        //
+        return view('authen.profile');
     }
 
     public function check_profile() {      

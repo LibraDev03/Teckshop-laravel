@@ -22,6 +22,9 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
+    {{-- toast thông báo --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css" integrity="sha512-wJgJNTBBkLit7ymC6vvzM1EcSWeM9mmOu+1USHaRBbHkm6W9EgM0HY27+UtUaprntaYQJF75rc8gjxllKs5OIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body>
@@ -259,16 +262,16 @@
                                 <ul>
                                     <li>
                                         @if (Auth::check() && Auth::user()->name)
-                                            {{ Auth::user()->name }}
+                                            <p>Hellooo <b>{{ Auth::user()->name }}</b> Welcome back !!!</p>
                                         @else
                                         @endif
                                     </li>
 
-                                    @if(Auth::check())
+                                    {{-- @if(Auth::check())
                                         <li><a href="{{route('authen.change_password')}}">Change the password</a></li>
                                         <li><a href="{{ route('authen.logout') }}">Logout</a></li>
                                     @else
-                                    @endif
+                                    @endif --}}
 
                                 </ul>
                             </div>
@@ -290,23 +293,44 @@
                         <div class="col-lg-9 col-md-6">
                             <div class="middel_right">
                                 <div class="search_container">
-                                    <form action="#">
+                                    {{-- <form action="">
                                         <div class="hover_category">
                                             <select class="select_option" name="select" id="categori1">
                                                 <option selected value="1">All Categories</option>
                                                 @foreach ($cats_home as $cath)
-                                                    <option value="2"><a href="{{ route('client.category', $cath->id) }}">{{ $cath->name }}</a></option>
+                                                <option value="2"><a href="{{ route('client.category', $cath->id) }}">{{ $cath->name }}</a></option>
                                                 @endforeach
                                             </select>
                                         </div>
+                                    </form> --}}
+                                    <form action="{{route('admin.search')}}" method="GET">
                                         <div class="search_box">
-                                            <input placeholder="Search product..." type="text">
+                                            <input name="key" placeholder="Search product..." type="text">
                                             <button type="submit">Search</button>
                                         </div>
                                     </form>
                                 </div>
                                 <div class="middel_right_info">
                                     @if (Auth::check())
+                                    <div class="mini_cart_wrapper">
+                                        <a href="">
+                                            <i class="fa fa-user" style="font-size: 24px; padding-right: 40px" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="mini_cart">
+                                            <div class="mini_cart_footer">
+                                                <div class="cart_button">
+                                                    <a href="">Profile</a>
+                                                </div>
+                                                <div class="cart_button">
+                                                    <a href="{{route('authen.change_password')}}">Change Password</a>
+                                                </div>
+                                                <div class="cart_button">
+                                                    <a href="{{ route('authen.logout') }}">Logout</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                         <div class="header_wishlist">
                                             <a href="{{ route('client.wishlish') }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
                                             <span class="wishlist_quantity">{{ $wishlist->count()}}</span>
@@ -430,7 +454,7 @@
                         <div class="col-lg-3 col-md-12">
                             <div class="categories_menu">
                                 <div class="categories_title">
-                                    <h2 class="categori_toggle">ALL CATEGORIES</h2>
+                                    <h2 class="categori_toggle">ALL CATEGORIES </h2>
                                 </div>
                                 <div class="categories_menu_toggle">
                                     <ul>
@@ -446,7 +470,7 @@
                                 <nav>
                                     <ul>
                                         <li><a class="" href="{{ route('admin.home') }}">home</a></li>
-                                        <li ><a href="hello" class="">shop<i class="fa fa-angle-down"></i></a>
+                                        <li ><a href="" class="">shop<i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
                                                 @foreach ($cats_home as $cath)
                                                     <li><a href="{{ route('client.category', $cath->id) }}">{{ $cath->name }}</a></li>
@@ -861,6 +885,34 @@
     <!-- Main JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
 
+    {{-- toast cho he thong --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
+
+    @if (Session::has('suc'))
+       <script>
+            $.toast({
+                heading: 'Thông báo tới bạn !!!',
+                text : '{{session::get('suc')}}',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                hideAfter: 3000,
+                icon: 'success'
+            })
+        </script>
+    @endif
+    
+    @if (Session::has('fail'))
+        <script>
+            $.toast({
+                heading: 'Thông báo tới bạn !!!',  
+                text : '{{session::get('fail')}}',
+                showHideTransition: 'slide',
+                position: 'top-right',
+                hideAfter: 3000,
+                icon: 'error'
+            })
+        </script>
+    @endif
 
 
 </body>

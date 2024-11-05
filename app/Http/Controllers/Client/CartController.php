@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -14,38 +15,43 @@ class CartController extends Controller
     }
 
     public function add(Request $request, Product $product){
-        //xử lý số lượng 
-        $quantity = $request->quantity ? floor($request->quantity) : 1;
-        // xác định 1 sản phẩm chỉ được xuất hiện 1 lần trong giỏ hàng nếu xuất hiện lần 2 thì xử lý thành số lượng
-        $cart_exists = Cart::where(['user_id'=> auth()->user()->id, 'product_id'=> $product->id ])->first();
+        if(Auth::check()){
 
-        if($cart_exists){
-            // Nếu đã có sản phẩm đó mà thêm vào 1 lần nưã thì xử lí tăng số lượng sản phẩm như sau 
-            
-            // cách 1 : sử dụng update để tăng thêm đơn vị vào quantity
-            // $cart_exists->update([
-            //     'quantity' => $cart_exists->quantity + $quantity
-            // ]);
-
-            //cách2 :sử dụng hàm dựng sẵn increment để tự động tăng số lượng lên 1
-            $cart_exists->increment('quantity', $quantity);
-
-            return  redirect()->route('client.cart.index');
-        }else{
-            // nếu chưa có sản phẩm đó trong giỏ hàng thì mới tạo mới vào giỏ hàng
-            $data = [
-                'user_id' => auth()->user()->id,
-                'product_id' => $product->id,
-                'price' => $product->price,
-                'quantity' => 1
-            ];
+            //xử lý số lượng 
+            $quantity = $request->quantity ? floor($request->quantity) : 1;
+            // xác định 1 sản phẩm chỉ được xuất hiện 1 lần trong giỏ hàng nếu xuất hiện lần 2 thì xử lý thành số lượng
+            $cart_exists = Cart::where(['user_id'=> auth()->user()->id, 'product_id'=> $product->id ])->first();
     
-            // dd($data);
+            if($cart_exists){
+                // Nếu đã có sản phẩm đó mà thêm vào 1 lần nưã thì xử lí tăng số lượng sản phẩm như sau 
+                
+                // cách 1 : sử dụng update để tăng thêm đơn vị vào quantity
+                // $cart_exists->update([
+                //     'quantity' => $cart_exists->quantity + $quantity
+                // ]);
     
-            if(Cart::create($data)){
+                //cách2 :sử dụng hàm dựng sẵn increment để tự động tăng số lượng lên 1
+                $cart_exists->increment('quantity', $quantity);
+    
                 return  redirect()->route('client.cart.index');
+            }else{
+                // nếu chưa có sản phẩm đó trong giỏ hàng thì mới tạo mới vào giỏ hàng
+                $data = [
+                    'user_id' => auth()->user()->id,
+                    'product_id' => $product->id,
+                    'price' => $product->price,
+                    'quantity' => 1
+                ];
+        
+                // dd($data);
+        
+                if(Cart::create($data)){
+                    return  redirect()->route('client.cart.index');
+                }
+                return redirect()->back();
             }
-            return redirect()->back();
+        }else{
+            return redirect()->back()->with('fail','dang nhap de them vao gio hang');
         }
 
     }

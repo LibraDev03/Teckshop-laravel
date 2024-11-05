@@ -15,7 +15,7 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Sử dụng cột role để phân quyền admin và người dùng
+        // Sử dụng cột role để phân quyền admin và người dùng.
         $role = auth()?->user()?->role;
         if($role != 0){
             return redirect()->route('admin.home');

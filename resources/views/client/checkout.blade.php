@@ -171,7 +171,7 @@
                                             </label> --}}
                                         </div>
                                         <div class="order_button">
-                                            <button type="submit">thanh toan binh thuong</button>
+                                            <button type="submit">thanh toan don hang</button>
                                         </div>
                                     </div>
                                 </div>

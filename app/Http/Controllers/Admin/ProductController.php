@@ -43,11 +43,13 @@ class ProductController extends Controller
         $data = $request->only('name' , 'price' , 'description' , 'category_id');
 
         // dd( $data);
-        // đặt 1 biến và dùng request truy vấn vào cột image , hashName để mã hóa tên ảnh tránh trùng lặp 
+         
         $img_name = $request->image->hashName();
-        // truy vấn vào cột image sau đó dùng move dời thư mục ảnh upload đến  file cần đến = hàm public_path
+        
         $request->image->move(public_path('assets/img/product'), $img_name);
         $data['image'] = $img_name;
+
+        // dd($data);
 
         if(Product::create($data)) {
             return redirect()->route('product.index');
@@ -91,7 +93,7 @@ class ProductController extends Controller
 
         $data = $request->only('name','price','description','category_id');
 
-        // biến has kiểm tra có ảnh hay không , nếu có thì thực hiện upload không thì giữ nguyên
+        // biến has kiểm tra có ảnh hay không
         if($request->has('image')){
             $img_name = $request->image->hashName();
             $request->image->move(public_path('assets/img/product'), $img_name);

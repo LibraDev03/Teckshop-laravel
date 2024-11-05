@@ -17,7 +17,20 @@ class HomeController extends Controller
         // truy vấn sản phẩm ra trang home
         $news_products = Product::orderBy('created_at','DESC')->limit(6)->get();
         $feature_product = Product::inRandomOrder()->limit(8)->get();
-        return view('client.home',compact('news_products','feature_product'));
+        return view('client.home',compact('news_products', 'feature_product'));
+    }
+
+    public function search(Category $cat) {
+        if($key = request()->key){
+            $data = Product::where('name', 'like', '%'.$key.'%')->orderBy('id', 'DESC')->get();
+        } 
+
+        // dd($data);
+
+        $products = $cat->products()->inRandomOrder()->paginate(9);
+        $news_products = Product::orderBy('created_at', 'DESC')->limit(3)->get()->shuffle();
+        $feature_product = Product::inRandomOrder()->limit(6)->get();
+        return view('client.search',compact('data','products','news_products','feature_product'));
     }
 
     public function category(Category $cat) {
@@ -26,7 +39,7 @@ class HomeController extends Controller
         $products = $cat->products()->inRandomOrder()->paginate(9);
         $news_products = Product::orderBy('created_at', 'DESC')->limit(3)->get()->shuffle();
         $feature_product = Product::inRandomOrder()->limit(6)->get();
-        return view('client.category' , compact('cat', 'products', 'news_products', 'feature_product'));
+        return view('client.category' , compact('cat','products','news_products','feature_product'));
     }
 
     public function product(product $product) {
@@ -48,19 +61,23 @@ class HomeController extends Controller
     }
     
     public function favorite(Product $product) {
-        $data = [
-            'product_id' => $product->id,
-            'user_id' => auth()->user()->id
-        ];
-        // dd($data);
-
-        $favorited = Favorite::where(['product_id'=> $product->id , 'user_id'=> auth()->user()->id])->first();
-        if($favorited) {
-            $favorited->delete();
-            return redirect()->back();
+        if(Auth::check()){
+            $data = [
+                'product_id' => $product->id,
+                'user_id' => auth()->user()->id
+            ];
+            // dd($data);
+    
+            $favorited = Favorite::where(['product_id'=> $product->id , 'user_id'=> auth()->user()->id])->first();
+            if($favorited) {
+                $favorited->delete();
+                return redirect()->back();
+            }else{
+                Favorite::create($data);
+                return redirect()->back();
+            }
         }else{
-            Favorite::create($data);
-            return redirect()->back();
+            return redirect()->back()->with('fail','dang nhap de co the yeu thich');
         }
     }
 

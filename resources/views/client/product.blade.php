@@ -113,7 +113,7 @@
                             </div>
                             <div class=" product_d_action">
                                 <ul>
-                                    <li><a href="#" title="Add to wishlist">+ Add to Wishlist ❤️</a></li>
+                                    <li><a href="{{route('client.favorite', $product->id )}}" title="Add to wishlist">+ Add to Wishlist ❤️</a></li>
                                 </ul>
                             </div>
 

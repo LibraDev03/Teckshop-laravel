@@ -44,14 +44,16 @@ Route::group(['prefix' => 'authen' , 'middleware'=> 'auth'], function() {
 
     Route::get('/change_password' , [AuthController::class , 'change_password'] )->name('authen.change_password');
     Route::post('/change_password' , [AuthController::class , 'check_change_password'] );
+
+    route::get('/profile', [AuthController::class, 'profile'])->name('authen.profile');
 });
 
 // Nhóm route này để có thể vào dashboard cho admin 
 Route::group(['prefix' => 'admin',"middleware" => "checkAdmin"], function() {
     Route::get('/', [DashboardController::class , 'dashboard'])->name('admin.dashboard'); 
+
     Route::get('/order', [OrderController::class, 'order'])->name('admin.order');
     Route::get('/details/{order}', [OrderController::class, 'details'])->name('admin.details');
-
 
     Route::resources([
         'user' => UserController::class,
@@ -63,6 +65,7 @@ Route::group(['prefix' => 'admin',"middleware" => "checkAdmin"], function() {
 // Nhóm route này để vào client cho người dùng
 Route::group(['prefix' =>'client'], function() {
     Route::get('/', [HomeController::class , 'home'])->name('admin.home');
+    Route::get('/search', [HomeController::class, 'search'])->name('admin.search');
 
     Route::get('/blog' , function(){ return view('client.blog'); })->name('client.blog');
     Route::get('/about' , function(){ return view('client.about'); })->name('client.about');
