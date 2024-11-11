@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\VerifyAccount;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Exists;
 
 class AuthController extends Controller
@@ -62,8 +64,12 @@ class AuthController extends Controller
         $data['password'] = bcrypt(request('password'));    // mã hóa mật khẩu bằng hàm bcrypt và gán vào biến data
         
         // dd($data);
-        User::create($data);
-        return redirect()->route('authen.login');
+        if($acc = User::create($data) ) {
+            Mail::to($acc->email)->send(new VerifyAccount($acc));
+            dd('oke');
+            return redirect()->route('authen.login');
+        }
+         
     }
 
     public function logout() {

@@ -33,6 +33,13 @@ class HomeController extends Controller
         return view('client.search',compact('data','products','news_products','feature_product'));
     }
 
+    public function shop(Category $cat) {
+        $products = Product::all();
+        $news_products = Product::orderBy('created_at', 'DESC')->limit(3)->get()->shuffle();
+        $feature_product = Product::inRandomOrder()->limit(6)->get();
+        return view('client.shop', compact('cat','products','news_products','feature_product'));
+    }
+
     public function category(Category $cat) {
         // 2 kiểu truy vấn 1 là bắt đầu từ $product 2 là bắt đầu từ model category
         // $products = Product::where('category_id', $cat->id)->get();

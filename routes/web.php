@@ -71,6 +71,7 @@ Route::group(['prefix' =>'client'], function() {
     Route::get('/about' , function(){ return view('client.about'); })->name('client.about');
     Route::get('/contact' , function(){ return view('client.contact');})->name('client.contact');
     
+    Route::get('/shop', [HomeController::class,'shop'])->name('client.shop');
     // truy vấn category ra ngoài client theo id của nó
     Route::get('/category/{cat}', [HomeController::class, 'category'])->name('client.category');
     // chi tiết sản phầm ra ngoài client theo id của nó

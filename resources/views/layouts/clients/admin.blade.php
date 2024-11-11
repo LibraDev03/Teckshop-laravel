@@ -319,7 +319,7 @@
                                         <div class="mini_cart">
                                             <div class="mini_cart_footer">
                                                 <div class="cart_button">
-                                                    <a href="">Profile</a>
+                                                    <a href="{{route('authen.profile')}}">Profile</a>
                                                 </div>
                                                 <div class="cart_button">
                                                     <a href="{{route('authen.change_password')}}">Change Password</a>
@@ -386,12 +386,28 @@
                                             @endforeach
                                         </div>
                                     @else
+                                    <div class="mini_cart_wrapper">
+                                        <a href="">
+                                            <i class="fa fa-user" style="font-size: 24px; padding-right: 40px" aria-hidden="true"></i>
+                                        </a>
+                                        <div class="mini_cart">
+                                            <div class="mini_cart_footer">
+                                                <div class="cart_button">
+                                                    <a href="{{route('authen.login')}}">login</a>
+                                                </div>
+                                                <div class="cart_button">
+                                                    <a href="{{ route('authen.register') }}">Register</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
                                         <div class="header_wishlist">
-                                            <a href="{{ route('authen.login') }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                                            <a href="{{ route('client.wishlish') }}"><i class="fa fa-heart" aria-hidden="true"></i></a>
                                             <span class="wishlist_quantity">{{ $wishlist->count()}}</span>
                                         </div>
                                         <div class="mini_cart_wrapper">
-                                            <a href="{{ route('authen.login') }}">
+                                            <a href="{{ route('client.cart.index') }}">
                                                 <i class="fa fa-shopping-bag" aria-hidden="true"></i><i class="fa fa-angle-down"></i>
                                             </a>
                                             <span class="cart_quantity">{{ $carts->sum('quantity')}}</span>
@@ -430,7 +446,9 @@
                                                             <div class="cart_button">
                                                                 <a href="{{ route('client.checkout') }}">Checkout</a>
                                                             </div>
-
+                                                            <div class="cart_button">
+                                                                <a href="{{ route('client.history') }}">Order history</a>
+                                                            </div>
                                                         </div>
 
                                                     </div>
@@ -470,7 +488,7 @@
                                 <nav>
                                     <ul>
                                         <li><a class="" href="{{ route('admin.home') }}">home</a></li>
-                                        <li ><a href="" class="">shop<i class="fa fa-angle-down"></i></a>
+                                        <li ><a href="{{route('client.shop')}}" class="">shop<i class="fa fa-angle-down"></i></a>
                                             <ul class="sub_menu pages">
                                                 @foreach ($cats_home as $cath)
                                                     <li><a href="{{ route('client.category', $cath->id) }}">{{ $cath->name }}</a></li>
