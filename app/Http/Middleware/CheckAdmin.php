@@ -18,7 +18,7 @@ class CheckAdmin
         // Sử dụng cột role để phân quyền admin và người dùng.
         $role = auth()?->user()?->role;
         if($role != 0){
-            return redirect()->route('admin.home');
+            return redirect()->route('admin.home')->with('fail', 'You are not an admin ');
         }
         return $next($request);
     }

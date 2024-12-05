@@ -12,7 +12,7 @@
                                     <h1> best skin</h1>
                                     <h2>qled 75 inch q7f</h2>
                                     <p>exclusive offer <span> 20% off </span> this week</p>
-                                    <a class="button" href="">shopping now</a>
+                                    <a class="button" href="{{route('client.shop')}}">shopping now</a>
                                 </div>
                             </div>
                         </div>
@@ -202,12 +202,13 @@
                                     </div>
                                 </div>
                                 <figcaption class="product_content">
+                                    <h3 class="product_name"><a href="{{ route('client.product' , $fp->id) }}"><b>{{ $fp->name }}</b></a></h3>
                                     <div class="price_box">
-                                        <span class="name_product"><b>{{ $fp->cat->name}}</b></span>
-                                        <br>
+                                        <span class="old_price">$86.00</span>
                                         <span class="current_price">${{ number_format($fp->price) }}</span>
+                                        <br>
+                                        <span class="name_product">{{ $fp->cat->name}}</span>
                                     </div>
-                                    <h3 class="product_name"><a href="{{ route('client.product' , $fp->id) }}">{{ $fp->name }}</a></h3>
                                 </figcaption>
                             </figure>
                         </article>
@@ -224,7 +225,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="single_banner mb-30">
                             <div class="banner_thumb">
-                                <a href="shop.html"><img src="assets/img/bg/banner4.jpg" alt=""></a>
+                                <a href=""><img src="assets/img/bg/banner4.jpg" alt=""></a>
                             </div>
                         </div>
                     </div>

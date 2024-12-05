@@ -58,23 +58,29 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required',
             'confirm_password' => 'required|same:password',
+            'address'=>'required',
+            'phone_number'=>'required|max:10',
+            'gender'=>'required',
+            'birthday'=> 'required'
         ]);
 
-        $data = request()->only('email','name','role');
+        $data = request()->only('email','name','role', 'address', 'phone_number', 'gender', 'birthday');
         $data['password'] = bcrypt(request('password'));    // mã hóa mật khẩu bằng hàm bcrypt và gán vào biến data
         
         // dd($data);
         if($acc = User::create($data) ) {
             Mail::to($acc->email)->send(new VerifyAccount($acc));
-            dd('oke');
-            return redirect()->route('authen.login');
+            // dd('oke');
+            return redirect()->route('authen.login')->with('suc', 'Successful account registration');
+        }else{
+            return redirect()->back()->with('fail', 'Account registration failed');
         }
          
     }
 
     public function logout() {
         Auth::logout();
-        return redirect()->route('authen.login')->with('fail', 'dang xuat thanh cong');
+        return redirect()->route('authen.login')->with('suc', 'dang xuat thanh cong');
     }
 
     public function change_password() {           
@@ -101,6 +107,51 @@ class AuthController extends Controller
         
     }
 
+    public function profile() {
+        $authen = auth()->user();         
+        return view('authen.profile', compact('authen'));
+    }
+
+    public function check_profile() {      
+        $data = request()->validate([
+            'name' => 'required',
+            'phone_number' => 'required',
+            'gender' => 'required',
+            'birthday' => 'required',
+            'address' => 'required',
+            'password'=> ['required', function($attr, $value, $fail){
+                if (!Hash::check($value, auth()->user()->password)) {
+                    return $fail('Mật khẩu của bạn không đúng để thay đổi profile');
+                }
+            }],
+            'email' => ['required','email','unique:users,email,' . auth()->user()->id,
+                function($attr, $value, $fail) {
+                    if ($value !== auth()->user()->email) {
+                        return $fail('Email của bạn không đúng để thay đổi hồ sơ');
+                    }
+                }
+            ]
+        ]);
+
+        $user = User::findOrFail(auth()->user()->id);
+        $updated = $user->update([
+            'name' => $data['name'],
+            'phone_number' => $data['phone_number'],
+            'gender' => $data['gender'],
+            'birthday' => $data['birthday'],
+            'address' => $data['address'],
+        ]);
+
+        if($updated) {
+
+            return redirect()->route('authen.profile')->with('suc', 'Sửa thông tin thành công');
+        } else {
+            // Xử lý khi cập nhật thất bại
+            return redirect()->back()->with('error', 'Không thể cập nhật thông tin.Vui lòng thử lại.');
+        }
+        
+    }
+
     public function forgot_password() {           
         //
     }
@@ -109,13 +160,6 @@ class AuthController extends Controller
         //
     }
 
-    public function profile() {           
-        return view('authen.profile');
-    }
-
-    public function check_profile() {      
-        //
-    }
 
 
 }

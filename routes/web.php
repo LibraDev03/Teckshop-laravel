@@ -46,6 +46,7 @@ Route::group(['prefix' => 'authen' , 'middleware'=> 'auth'], function() {
     Route::post('/change_password' , [AuthController::class , 'check_change_password'] );
 
     route::get('/profile', [AuthController::class, 'profile'])->name('authen.profile');
+    route::post('/profile', [AuthController::class, 'check_profile']);
 });
 
 // Nhóm route này để có thể vào dashboard cho admin 

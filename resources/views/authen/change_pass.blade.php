@@ -29,13 +29,9 @@
                             </p>
                             <div class="login_submit">
                                 <a href="#"><b>Lost your password</b></a>
-                                <a href="{{ route('authen.register') }}" class="login_submit_addRGT"><b>Register</b></a>
+                                {{-- <a href="{{ route('authen.register') }}" class="login_submit_addRGT"><b>Register</b></a> --}}
 
-                                <label for="remember">
-                                    <input id="remember" type="checkbox">
-                                    Remember me
-                                </label>
-                                <button type="submit">Change</button>
+                                <button type="submit">Change password</button>
                             </div>
 
                         </form>

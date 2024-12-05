@@ -16,7 +16,7 @@
                 <td style="padding: 10px; background-color: #f2f2f2; font-weight: bold;">Họ tên:</td>
                 <td style="padding: 10px; background-color: #f9f9f9;">{{ $account->name }}</td>
             </tr>
-            {{-- <tr>
+            <tr>
                 <td style="padding: 10px; background-color: #f2f2f2; font-weight: bold;">Giới tính:</td>
                 <td style="padding: 10px; background-color: #f9f9f9;">{{ $account->gender }}</td>
             </tr>
@@ -26,12 +26,12 @@
             </tr>
             <tr>
                 <td style="padding: 10px; background-color: #f2f2f2; font-weight: bold;">Số điện thoại:</td>
-                <td style="padding: 10px; background-color: #f9f9f9;">{{ $account->phone }}</td>
+                <td style="padding: 10px; background-color: #f9f9f9;">{{ $account->phone_number }}</td>
             </tr>
             <tr>
                 <td style="padding: 10px; background-color: #f2f2f2; font-weight: bold;">Địa chỉ:</td>
                 <td style="padding: 10px; background-color: #f9f9f9;">{{ $account->address }}</td>
-            </tr> --}}
+            </tr>
         </table>
 
         {{-- <p style="font-size: 16px; color: #333;">Vui lòng nhấn vào nút bên dưới để kích hoạt tài khoản và đăng nhập ngay:</p>
@@ -44,7 +44,6 @@
 
         <p style="font-size: 14px; color: #666;">Nếu bạn không thực hiện đăng ký này, vui lòng bỏ qua email này.</p>
 
-        <p style="font-size: 14px; color: #333;">Trân trọng,<br>
-        Đội ngũ hỗ trợ </p>
+        <p style="font-size: 14px; color: #333;">Teckshop luôn đồng hành cùng bạn</p>
     </div>
 </div>
