@@ -32,7 +32,7 @@ class AuthController extends Controller
         $data = request()->all('email','password');
 
         // dd($data);
-        if(auth()->attempt($data)) {                        // auth->attempt là kiểm tra thông tin có trên csdl trùng khớp là true còn lại false
+        if(auth()->attempt($data)) {                    // auth->attempt là kiểm tra thông tin có trên csdl trùng khớp là true còn lại false
             
             $role = auth()?->user()?->role;
             if($role != 0) {

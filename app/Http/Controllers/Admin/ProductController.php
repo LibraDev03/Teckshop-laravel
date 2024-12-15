@@ -52,9 +52,9 @@ class ProductController extends Controller
         // dd($data);
 
         if(Product::create($data)) {
-            return redirect()->route('product.index');
+            return redirect()->route('product.index')->with('suc', 'Added successful products');
         }
-        return redirect()->back();
+        return redirect()->back()->with('fail', 'Added fail products');
     }
 
     /**
